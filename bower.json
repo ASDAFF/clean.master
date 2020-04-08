@@ -1,0 +1,13 @@
+{
+  "name": "clean.master",
+  "version": "1.0.9",
+  "main": "",
+  "ignore": [
+    "source",
+    ".gitignore",
+    ".idea",
+    "bower.json",
+    "gulpfile.js",
+    "package.json"
+  ]
+}
