@@ -1,0 +1,7 @@
+<?
+$MESS["ACRIT_CLEANMASTER_INFOBLOK"] = "Инфоблок #IBLOCK_ID# : '#IBLOCK_NAME#' удален";
+$MESS["ACRIT_CLEANMASTER_FORUM_DELETE"] = "Форум #FORUM_ID# : '#FORUM_NAME#' удален";
+$MESS["ACRIT_CLEANMASTER_CLEAN_SITE_ORDERS"] = "Очищены заказы сайта";
+$MESS["ACRIT_CLEANMASTER_CLEAN_SITE_SUBSCRIBE_RUBRICS"] = "Удалены рубрики подписки сайта";
+$MESS["CLEANMASTER_ACTION_1_SITE_DELETED"] = "Сайт #SITE# удален";
+?>
