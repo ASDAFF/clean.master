@@ -1,4 +1,8 @@
 <?
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
 $GLOBALS['_____1319580442'] = array(
     base64_decode('SW5jb' . 'HVk' . 'ZU' . '1vZHV' . 'sZUxhbmdGaWxl')
 );
@@ -509,7 +513,7 @@ CModule::AddAutoloadClasses(___421826462(42), array(
     ___421826462(75) => ___421826462(76),
     ___421826462(77) => ___421826462(78)
 ));
-class CAcritCleanMasterMenu
+class CCleanCleanMasterMenu
 {
     public function OnBuildGlobalMenu(&$_1497903613, &$_172692531)
     {
@@ -602,7 +606,7 @@ class TCleanMasterFunctions
     }
     protected function GetActionList()
     {
-        return is_array($_SESSION['cleanmaster']['action']) && !empty($_SESSION['cleanmaster']['action']) ? $_SESSION['cleanmaster']['action'] : false;
+        return is_array($_SESSION['master']['action']) && !empty($_SESSION['master']['action']) ? $_SESSION['master']['action'] : false;
     }
     protected function __1390825332($_722807011)
     {
@@ -844,7 +848,7 @@ if ($isDemo == round(0 + 0.33333333333333 + 0.33333333333333 + 0.33333333333333)
                                 var upload_step = $upload_step;
                                 $.ajax({
                                     method: 'POST',
-                                    url: '/bitrix/admin/acrit_cleanmaster_processor.php',
+                                    url: '/bitrix/admin/clean_master_processor.php',
                                     data: {upload_step: upload_step, action: 5},
                                     success: function(data){
                                         try{
@@ -1162,7 +1166,7 @@ if ($isDemo == round(0 + 0.33333333333333 + 0.33333333333333 + 0.33333333333333)
                 var clear_comp_step = $clear_comp_step;
                 $.ajax({
                     method: 'POST',
-                    url: '/bitrix/admin/acrit_cleanmaster_processor.php',
+                    url: '/bitrix/admin/clean_master_processor.php',
                     data: {clear_comp_step: clear_comp_step, action: 20},
                     success: function(data){
                         try{

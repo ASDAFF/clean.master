@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanIBlock
 {
@@ -17,7 +19,7 @@ class CCleanIBlock
 	}
 
 	/**
-	 * Удаление неактивных элементов инфоблока
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 * @param $ibs_test
 	 * @return bool
 	 */
@@ -35,7 +37,7 @@ class CCleanIBlock
 	}
 	
 	/*
-		Получаем данные для диагностики
+		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	*/
 	public function GetDiagnosticData($step = false)
 	{
@@ -47,7 +49,7 @@ class CCleanIBlock
 				$dbElem = CIBlockElement::GetList(Array("SORT"=>"ASC"), Array("IBLOCK_ID" => $iblock['ID'], "ACTIVE"=>"N"), false, false, array('ID', 'NAME'));
 				while($arElem = $dbElem->GetNext())
 				{
-					$_SESSION['cleanmaster']['diagnostic']['ibelement']['iblock']["{$iblock['NAME']} [{$iblock['ID']}]"][] = "{$arElem['NAME']} [{$arElem['ID']}]";
+					$_SESSION['master']['diagnostic']['ibelement']['iblock']["{$iblock['NAME']} [{$iblock['ID']}]"][] = "{$arElem['NAME']} [{$arElem['ID']}]";
 				}
 			}
 		}

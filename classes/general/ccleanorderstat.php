@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanOrderStat {
     
@@ -24,13 +26,13 @@ class CCleanOrderStat {
 	}
 	
 	/*
-		Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+		ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	*/
 	public function GetDiagnosticData($step = false)
 	{
 		if(!@CModule::IncludeModule('sale'))
 			return false;
-		$_SESSION['cleanmaster']['diagnostic']['orderstat']['order'] = 0;
+		$_SESSION['master']['diagnostic']['orderstat']['order'] = 0;
 		$arFilter = Array(
 			"PAYED" => "N",
 			"<=DATE_UPDATE" => date("d.m.Y 23:59:59", time() - 2592000),
@@ -42,7 +44,7 @@ class CCleanOrderStat {
 		$arFilter = array_merge($arFilter, $arUnpayed);
 		$rsSales = CSaleOrder::GetList(array("DATE_INSERT" => "ASC"), $arFilter);
 		while ($arSales = $rsSales->Fetch()) {
-			$_SESSION['cleanmaster']['diagnostic']['orderstat']['order']++;
+			$_SESSION['master']['diagnostic']['orderstat']['order']++;
 		}
 		return false;
 	}

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanCache extends TCleanMasterFunctions{
     
@@ -15,18 +17,18 @@ class CCleanCache extends TCleanMasterFunctions{
     }
     
     public function CacheClear() {
-		DeleteDirFilesEx($this->managed_cache); // óïðàâëÿåìûé êýø
-		DeleteDirFilesEx($this->cache); // ïðîñòî êýø
-		DeleteDirFilesEx($this->stackCache); // äæîííè êýø
+		DeleteDirFilesEx($this->managed_cache); // ÑƒÐ¿Ñ€Ð°Ð²Ð»ÑÐµÐ¼Ñ‹Ð¹ ÐºÑÑˆ
+		DeleteDirFilesEx($this->cache); // Ð¿Ñ€Ð¾ÑÑ‚Ð¾ ÐºÑÑˆ
+		DeleteDirFilesEx($this->stackCache); // Ð´Ð¶Ð¾Ð½Ð½Ð¸ ÐºÑÑˆ
 		CHTMLPagesCache::cleanAll();
 	}
 	
 	/*
-		Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+		ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	*/
 	public function GetDiagnosticData($step = false)
 	{
-		$_SESSION['cleanmaster']['diagnostic']['cache']['size'] = 0;
+		$_SESSION['master']['diagnostic']['cache']['size'] = 0;
 		
 		$dirs = array(
 			$this->cache,
@@ -39,8 +41,8 @@ class CCleanCache extends TCleanMasterFunctions{
 		{
 			if(file_exists($this->documentRoot.$dir))
 			{
-				$_SESSION['cleanmaster']['diagnostic']['cache']['dirs'][$dir] = $this->GetDirSize($this->documentRoot.$dir);
-				$_SESSION['cleanmaster']['diagnostic']['cache']['size'] += $_SESSION['cleanmaster']['diagnostic']['cache']['dirs'][$dir];
+				$_SESSION['master']['diagnostic']['cache']['dirs'][$dir] = $this->GetDirSize($this->documentRoot.$dir);
+				$_SESSION['master']['diagnostic']['cache']['size'] += $_SESSION['master']['diagnostic']['cache']['dirs'][$dir];
 			}
 		}
 		return false;

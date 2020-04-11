@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanAttackEvent extends TCleanMasterFunctions
 {
@@ -40,14 +43,14 @@ class CCleanAttackEvent extends TCleanMasterFunctions
 	}
 	
 	/*
-		Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+		ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	*/
 	public function GetDiagnosticData($step = false)
 	{
 		if(!@CModule::IncludeModule('statistic'))
 			return false;
 		$arDBSize = $this->GetDBSize();
-		$_SESSION['cleanmaster']['diagnostic']['attackevent']['record'] = 0;
+		$_SESSION['master']['diagnostic']['attackevent']['record'] = 0;
 		$arFilter = Array(
 			'TIMESTAMP_X_1' => '',
 			'TIMESTAMP_X_2' => '',
@@ -71,12 +74,12 @@ class CCleanAttackEvent extends TCleanMasterFunctions
 		);
 		$rsData = CEventLog::GetList(array($by => $order), $arFilter, false);
 		while($ob = $rsData->Fetch()){
-			$_SESSION['cleanmaster']['diagnostic']['attackevent']['record']++;
+			$_SESSION['master']['diagnostic']['attackevent']['record']++;
 		}
 		if($arDBSize['b_event_log']['table_rows'] <= 0)
-			$_SESSION['cleanmaster']['diagnostic']['attackevent']['size'] = 0;
+			$_SESSION['master']['diagnostic']['attackevent']['size'] = 0;
 		else
-			$_SESSION['cleanmaster']['diagnostic']['attackevent']['size'] = $arDBSize['b_event_log']['total_size_mb'] / $arDBSize['b_event_log']['table_rows'] * $_SESSION['cleanmaster']['diagnostic']['attackevent']['record'];
+			$_SESSION['master']['diagnostic']['attackevent']['size'] = $arDBSize['b_event_log']['total_size_mb'] / $arDBSize['b_event_log']['table_rows'] * $_SESSION['master']['diagnostic']['attackevent']['record'];
 		
 		return false;
 	}

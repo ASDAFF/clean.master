@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanUpload extends TCleanMasterFunctions
 {
@@ -14,7 +17,7 @@ class CCleanUpload extends TCleanMasterFunctions
     }
 
 	/**
-	 * Ñêîëüêî îáðàáàòûâàòü çà øàã (2000 ôàéëîâ)
+	 * Ð¡ÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¾Ð±Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°Ñ‚ÑŒ Ð·Ð° ÑˆÐ°Ð³ (2000 Ñ„Ð°Ð¹Ð»Ð¾Ð²)
 	 * @param bool $count
 	 * @return bool|int
 	 */
@@ -32,7 +35,7 @@ class CCleanUpload extends TCleanMasterFunctions
 	}
 
 	/**
-	 * ïîëó÷èòü êîë-âî çàïèñåé â òàáëèöå b_file
+	 * Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ ÐºÐ¾Ð»-Ð²Ð¾ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð² Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ðµ b_file
 	 * @return integer
 	 */
 	public function GetCount()
@@ -44,7 +47,7 @@ class CCleanUpload extends TCleanMasterFunctions
 	}
 
 	/**
-	 * ïîëó÷èòü êîë-âî çàïèñåé â òàáëèöå b_file
+	 * Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ ÐºÐ¾Ð»-Ð²Ð¾ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð² Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ðµ b_file
 	 * @return integer
 	 * @deprecated
 	 */
@@ -54,7 +57,7 @@ class CCleanUpload extends TCleanMasterFunctions
 	}
 
 	/**
-	 * Ïîëó÷èòü ñòðîêè èç b_file
+	 * ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ ÑÑ‚Ñ€Ð¾ÐºÐ¸ Ð¸Ð· b_file
 	 * @param $step
 	 * @return array|bool
 	 */
@@ -80,9 +83,9 @@ class CCleanUpload extends TCleanMasterFunctions
 
 		global $DB;
 		if (
-			!is_array($_SESSION['cleanmaster']['diagnostic']['iblock']['files'])
-			|| empty($_SESSION['cleanmaster']['diagnostic']['iblock']['files'])
-			|| (count($_SESSION['cleanmaster']['diagnostic']['iblock']['files']) == 0)
+			!is_array($_SESSION['master']['diagnostic']['iblock']['files'])
+			|| empty($_SESSION['master']['diagnostic']['iblock']['files'])
+			|| (count($_SESSION['master']['diagnostic']['iblock']['files']) == 0)
 		) {
 			return false;
 		}
@@ -91,7 +94,7 @@ class CCleanUpload extends TCleanMasterFunctions
 		$start = $step * $count;
 		$end = $start + $count;
 		$dbFiles = $DB->Query("SELECT ID FROM b_file WHERE `MODULE_ID`='iblock' AND `ID` NOT IN ("
-									.implode(',', $_SESSION['cleanmaster']['diagnostic']['iblock']['files'])
+									.implode(',', $_SESSION['master']['diagnostic']['iblock']['files'])
 								.") LIMIT $count OFFSET $start");
 		$continue = false;
 		while ($arFile = $dbFiles->Fetch()) {
@@ -102,7 +105,7 @@ class CCleanUpload extends TCleanMasterFunctions
 	}
 
 	/**
-	 * âîçâðàùàåò ôàéëû èç ïàïêè /upload/cleanmaster/ â /upload/
+	 * Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ñ„Ð°Ð¹Ð»Ñ‹ Ð¸Ð· Ð¿Ð°Ð¿ÐºÐ¸ /upload/master/ Ð² /upload/
 	 * @deprecated
 	 */
 	public function RemoveAndRename()
@@ -110,9 +113,9 @@ class CCleanUpload extends TCleanMasterFunctions
 		// TODO
 		return;
 
-		$temp_upload    = $this->documentRoot.'/upload/cleanmaster/';
+		$temp_upload    = $this->documentRoot.'/upload/master/';
 
-		$temp_upload2   = $this->documentRoot.'/upload/cleanmaster_tmp/';
+		$temp_upload2   = $this->documentRoot.'/upload/master_tmp/';
 		if (!file_exists($temp_upload2)) {
 			mkdir($temp_upload2);
             $this->SetPermission($temp_upload2, 0777);
@@ -126,8 +129,8 @@ class CCleanUpload extends TCleanMasterFunctions
 			if($dir == '.' || $dir == '..')
 				continue;
 
-			rename($upload.$dir, $temp_upload2.$dir); // upload --> cleanmaster_tmp
-			rename($temp_upload.$dir, $upload.$dir);  // cleanmaster --> upload
+			rename($upload.$dir, $temp_upload2.$dir); // upload --> master_tmp
+			rename($temp_upload.$dir, $upload.$dir);  // master --> upload
 
 			$this->SetPermission($upload.$dir, BX_DIR_PERMISSIONS);
 		}
@@ -136,18 +139,18 @@ class CCleanUpload extends TCleanMasterFunctions
 	}
 
 	/**
-	 * Ïåðåíîñèò âñå çàðåãèñòðèðîâàííûå ôàéëû èç b_file â /upload/cleanmaster/
+	 * ÐŸÐµÑ€ÐµÐ½Ð¾ÑÐ¸Ñ‚ Ð²ÑÐµ Ð·Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ðµ Ñ„Ð°Ð¹Ð»Ñ‹ Ð¸Ð· b_file Ð² /upload/master/
 	 * @param $step
 	 * @deprecated
 	 */
 	public function ClearUpload($step)
 	{
-		// TODO áåç çàâåðøàþùåãî âûçîâà RemoveAndRename() óäàëÿåò ôàéëû
+		// TODO Ð±ÐµÐ· Ð·Ð°Ð²ÐµÑ€ÑˆÐ°ÑŽÑ‰ÐµÐ³Ð¾ Ð²Ñ‹Ð·Ð¾Ð²Ð° RemoveAndRename() ÑƒÐ´Ð°Ð»ÑÐµÑ‚ Ñ„Ð°Ð¹Ð»Ñ‹
 		return;
 
 		$upload = $this->documentRoot.'/upload/';
 
-		$temp_upload = $this->documentRoot.'/upload/cleanmaster/';
+		$temp_upload = $this->documentRoot.'/upload/master/';
 		if (!file_exists($temp_upload)) {
 			mkdir($temp_upload);
 			$this->SetPermission($temp_upload, 0777);
@@ -180,7 +183,7 @@ class CCleanUpload extends TCleanMasterFunctions
 	}
     public function DeleteTempDir()
     {
-        $temp_upload = '/upload/cleanmaster/';
+        $temp_upload = '/upload/master/';
         $this->SetPermission($this->documentRoot.$temp_upload, 0777);
 	    DeleteDirFilesEx($temp_upload);
 
@@ -195,7 +198,7 @@ class CCleanUpload extends TCleanMasterFunctions
     }
 
 	/**
-	 * Ïîëó÷àåì ðàçìåð ïàïîê è ñîõðàíÿåì â ñåññèþ äëÿ äèàãíîñòèêè
+	 * ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð¿Ð°Ð¿Ð¾Ðº Ð¸ ÑÐ¾Ñ…Ñ€Ð°Ð½ÑÐµÐ¼ Ð² ÑÐµÑÑÐ¸ÑŽ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	 *
 	 * @param     $path
 	 * @param int $level
@@ -217,7 +220,7 @@ class CCleanUpload extends TCleanMasterFunctions
 					$dirSize = $this->GetUploadSize($path.$file.'/', $level+1);
 					if($level == 1)
 					{
-						$_SESSION['cleanmaster']['diagnostic']['upload']['dirSize'][$file] = $dirSize;
+						$_SESSION['master']['diagnostic']['upload']['dirSize'][$file] = $dirSize;
 					}
 					$size += $dirSize;
 				}
@@ -230,43 +233,43 @@ class CCleanUpload extends TCleanMasterFunctions
 
 	/**
 	 * @param $step
-	 * @return bool false îòñòàíîâèòü òåêñò, íè÷åãî - ïðîäîëæèòü
+	 * @return bool false Ð¾Ñ‚ÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ñ‚ÐµÐºÑÑ‚, Ð½Ð¸Ñ‡ÐµÐ³Ð¾ - Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ
 	 */
 	public function GetDiagnosticIBlockData($step)
 	{
 		if(!$step || $step == 1)
 		{
-			$_SESSION['cleanmaster']['diagnostic']['upload']['iblock'] = array();
+			$_SESSION['master']['diagnostic']['upload']['iblock'] = array();
 			$step = 1;
 		}
 		$dbRes = CIBlockElement::GetList(array('id' => 'asc'), array(), false, array('nPageSize' => self::IBLOCK_ELEMENTS_PER_STEP, 'iNumPage' => $step), array('ID', 'PREVIEW_PICTURE', 'DETAIL_PICTURE'));
 		while($arRes = $dbRes->GetNext())
 		{
 			if(intval($arRes['PREVIEW_PICTURE']) > 0)
-				$_SESSION['cleanmaster']['diagnostic']['iblock']['files'][] = $arRes['PREVIEW_PICTURE'];
+				$_SESSION['master']['diagnostic']['iblock']['files'][] = $arRes['PREVIEW_PICTURE'];
 			if(intval($arRes['DETAIL_PICTURE']) > 0)
-				$_SESSION['cleanmaster']['diagnostic']['iblock']['files'][] = $arRes['DETAIL_PICTURE'];
+				$_SESSION['master']['diagnostic']['iblock']['files'][] = $arRes['DETAIL_PICTURE'];
 		}
-		$_SESSION['cleanmaster']['diagnostic']['iblock']['files'] = array_unique($_SESSION['cleanmaster']['diagnostic']['iblock']['files']);
+		$_SESSION['master']['diagnostic']['iblock']['files'] = array_unique($_SESSION['master']['diagnostic']['iblock']['files']);
 		if($dbRes->NavPageCount <= $step)
 		{
 			// its unused TODO 2.1.7
 			/*$size = 0;
-			foreach($_SESSION['cleanmaster']['diagnostic']['iblock']['files'] as $file)
+			foreach($_SESSION['master']['diagnostic']['iblock']['files'] as $file)
 			{
 				$path = CFile::GetPath($file);
 				$arPath = explode('/', $path);
 				if($arPath[2] == 'iblock')
 					$size += filesize($this->documentRoot.$path) / 1024 / 1024;
 			}
-			$_SESSION['cleanmaster']['diagnostic']['upload']['iblock'] = $size;*/
+			$_SESSION['master']['diagnostic']['upload']['iblock'] = $size;*/
 			return false;
 		}
 	}
 
 	/**
 	 * @param $step
-	 * @return bool false îòñòàíîâèòü òåêñò, íè÷åãî - ïðîäîëæèòü
+	 * @return bool false Ð¾Ñ‚ÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ñ‚ÐµÐºÑÑ‚, Ð½Ð¸Ñ‡ÐµÐ³Ð¾ - Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ
 	 */
 	public function GetDiagnosticSectionData($step)
 	{
@@ -277,23 +280,23 @@ class CCleanUpload extends TCleanMasterFunctions
 		while($arRes = $dbRes->GetNext())
 		{
 			if(intval($arRes['PICTURE']) > 0)
-				$_SESSION['cleanmaster']['diagnostic']['iblock']['files'][] = $arRes['PICTURE'];
+				$_SESSION['master']['diagnostic']['iblock']['files'][] = $arRes['PICTURE'];
 			if(intval($arRes['DETAIL_PICTURE']) > 0)
-				$_SESSION['cleanmaster']['diagnostic']['iblock']['files'][] = $arRes['DETAIL_PICTURE'];
+				$_SESSION['master']['diagnostic']['iblock']['files'][] = $arRes['DETAIL_PICTURE'];
 		}
-		$_SESSION['cleanmaster']['diagnostic']['iblock']['files'] = array_unique($_SESSION['cleanmaster']['diagnostic']['iblock']['files']);
+		$_SESSION['master']['diagnostic']['iblock']['files'] = array_unique($_SESSION['master']['diagnostic']['iblock']['files']);
 		if($dbRes->NavPageCount <= $step)
 		{
 			// its unused TODO 2.1.7
 			/*$size = 0;
-			foreach($_SESSION['cleanmaster']['diagnostic']['iblock']['files'] as $file)
+			foreach($_SESSION['master']['diagnostic']['iblock']['files'] as $file)
 			{
 				$path = CFile::GetPath($file);
 				$arPath = explode('/', $path);
 				if($arPath[2] == 'iblock')
 					$size += filesize($this->documentRoot.$path) / 1024 / 1024;
 			}
-			$_SESSION['cleanmaster']['diagnostic']['upload']['iblock'] = $size;*/
+			$_SESSION['master']['diagnostic']['upload']['iblock'] = $size;*/
 			return false;
 		}
 	}
@@ -345,30 +348,30 @@ class CCleanUpload extends TCleanMasterFunctions
 				if ($prop !== false) {
 					if (is_array($prop)) {
 						foreach ($prop as $val) {
-							$_SESSION['cleanmaster']['diagnostic']['iblock']['files'][] = $val;
+							$_SESSION['master']['diagnostic']['iblock']['files'][] = $val;
 						}
 					} else {
 						if (intval($prop) > 0) {
-							$_SESSION['cleanmaster']['diagnostic']['iblock']['files'][] = $prop;
+							$_SESSION['master']['diagnostic']['iblock']['files'][] = $prop;
 						}
 					}
 				}
 			}
 		}
 
-		$_SESSION['cleanmaster']['diagnostic']['iblock']['files'] = array_unique($_SESSION['cleanmaster']['diagnostic']['iblock']['files']);
+		$_SESSION['master']['diagnostic']['iblock']['files'] = array_unique($_SESSION['master']['diagnostic']['iblock']['files']);
 		if($dbElem->NavPageCount <= $step)
 		{
 			// its unused TODO 2.1.7
 			/*$size = 0;
-			foreach($_SESSION['cleanmaster']['diagnostic']['iblock']['files'] as $file)
+			foreach($_SESSION['master']['diagnostic']['iblock']['files'] as $file)
 			{
 				$path = CFile::GetPath($file);
 				$arPath = explode('/', $path);
 				if($arPath[2] == 'iblock')
 					$size += filesize($this->documentRoot.$path) / 1024 / 1024;
 			}
-			$_SESSION['cleanmaster']['diagnostic']['upload']['iblock'] = $size;*/
+			$_SESSION['master']['diagnostic']['upload']['iblock'] = $size;*/
 			return false;
 		}
 	}
@@ -383,10 +386,10 @@ class CCleanUpload extends TCleanMasterFunctions
 
 		if(!$step)
 		{
-			$_SESSION['cleanmaster']['diagnostic']['upload']['dbSize'] = 0;
-			$_SESSION['cleanmaster']['diagnostic']['upload']['dirs'] = array();
+			$_SESSION['master']['diagnostic']['upload']['dbSize'] = 0;
+			$_SESSION['master']['diagnostic']['upload']['dirs'] = array();
 			//exec("du -h --max-depth=1 $upload", $output);
-			$_SESSION['cleanmaster']['diagnostic']['upload']['dirSize']['.'] = $this->GetUploadSize($this->documentRoot.'/upload/');
+			$_SESSION['master']['diagnostic']['upload']['dirSize']['.'] = $this->GetUploadSize($this->documentRoot.'/upload/');
 
 			//
 			// files data dont need yet
@@ -398,15 +401,15 @@ class CCleanUpload extends TCleanMasterFunctions
 		{
 			$arPath = explode('/', $record['SUBDIR']);
 			if(is_array($arPath) && !empty($arPath)) {
-				if (!array_key_exists($arPath[0], $_SESSION['cleanmaster']['diagnostic']['upload']['dirs'])) {
-					$_SESSION['cleanmaster']['diagnostic']['upload']['dirs'][$arPath[0]] = 0;
+				if (!array_key_exists($arPath[0], $_SESSION['master']['diagnostic']['upload']['dirs'])) {
+					$_SESSION['master']['diagnostic']['upload']['dirs'][$arPath[0]] = 0;
 				}
 			}
 			if(file_exists($upload.$record['SUBDIR'].'/'.$record['FILE_NAME']))
 			{
 				$fileSize = filesize($upload.$record['SUBDIR'].'/'.$record['FILE_NAME']) / 1024 / 1024;
-				$_SESSION['cleanmaster']['diagnostic']['upload']['dirs'][$arPath[0]] += $fileSize;
-				$_SESSION['cleanmaster']['diagnostic']['upload']['dbSize'] += $fileSize;
+				$_SESSION['master']['diagnostic']['upload']['dirs'][$arPath[0]] += $fileSize;
+				$_SESSION['master']['diagnostic']['upload']['dbSize'] += $fileSize;
 			}
 		}
 	}

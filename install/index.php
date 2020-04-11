@@ -1,14 +1,18 @@
 <?
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
 $GLOBALS['_____184093346'] = array(
     base64_decode('S' . 'W5' . 'jbH' . 'Vk' . 'ZU1vZHVsZUx' . 'hbmdG' . 'aWxl')
 );
 ?>
 <?
 $GLOBALS['_____184093346'][0](__FILE__);
-Class acrit_cleanmaster extends CModule
+Class clean_master extends CModule
 {
-    const MODULE_ID = 'acrit.cleanmaster';
-    var $MODULE_ID = 'acrit.cleanmaster';
+    const MODULE_ID = 'clean.master';
+    var $MODULE_ID = 'clean.master';
     var $MODULE_VERSION;
     var $MODULE_VERSION_DATE;
     var $MODULE_NAME;
@@ -21,20 +25,20 @@ Class acrit_cleanmaster extends CModule
         include(dirname(__FILE__) . '/version.php');
         $this->MODULE_VERSION      = $arModuleVersion['VERSION'];
         $this->MODULE_VERSION_DATE = $arModuleVersion['VERSION_DATE'];
-        $this->MODULE_NAME         = GetMessage('acrit.cleanmaster_MODULE_NAME');
-        $this->MODULE_DESCRIPTION  = GetMessage('acrit.cleanmaster_MODULE_DESC');
-        $this->PARTNER_NAME        = GetMessage('acrit.cleanmaster_PARTNER_NAME');
-        $this->PARTNER_URI         = GetMessage('acrit.cleanmaster_PARTNER_URI');
+        $this->MODULE_NAME         = GetMessage('clean.master_MODULE_NAME');
+        $this->MODULE_DESCRIPTION  = GetMessage('clean.master_MODULE_DESC');
+        $this->PARTNER_NAME        = GetMessage('clean.master_PARTNER_NAME');
+        $this->PARTNER_URI         = GetMessage('clean.master_PARTNER_URI');
     }
     function InstallDB($_476777929 = array())
     {
-        RegisterModuleDependences('main', 'OnBuildGlobalMenu', self::MODULE_ID, 'CAcritCleanMasterMenu', 'OnBuildGlobalMenu');
+        RegisterModuleDependences('main', 'OnBuildGlobalMenu', self::MODULE_ID, 'CCleanCleanMasterMenu', 'OnBuildGlobalMenu');
         return true;
     }
     function UnInstallDB($_476777929 = array())
     {
         global $DB;
-        UnRegisterModuleDependences('main', 'OnBuildGlobalMenu', self::MODULE_ID, 'CAcritCleanMasterMenu', 'OnBuildGlobalMenu');
+        UnRegisterModuleDependences('main', 'OnBuildGlobalMenu', self::MODULE_ID, 'CCleanCleanMasterMenu', 'OnBuildGlobalMenu');
         $DB->Query("DELETE FROM b_option WHERE `MODULE_ID`='{$this->MODULE_ID}' AND `NAME`='~bsm_stop_date'");
         return true;
     }
@@ -107,7 +111,7 @@ Class acrit_cleanmaster extends CModule
             }
         }
         unlink($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/' . self::MODULE_ID . '/admin/user_date_bsm.php');
-        DeleteDirFilesEx('/bitrix/gadgets/acrit/cleanmaster/');
+        DeleteDirFilesEx('/bitrix/gadgets/clean/master/');
         return true;
     }
     function RegisterGadget()

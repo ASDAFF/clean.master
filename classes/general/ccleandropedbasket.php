@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanDropedBasket
 {
@@ -21,14 +23,14 @@ class CCleanDropedBasket
 	}
 	
 	/**
-	 * Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+	 * ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	 *
 	 * @param string $step
 	 * @return boolean
 	 */
 	public function GetDiagnosticData($step = false)
 	{
-		$_SESSION['cleanmaster']['diagnostic']['dropbasket']['basket'] = 0;
+		$_SESSION['master']['diagnostic']['dropbasket']['basket'] = 0;
 		$arFilter = Array(
 			"<=DATE_UPDATE" => date("d.m.Y 23:59:59", time() - 2592000),
 			"ORDER_ID"		=> 'NULL'
@@ -37,7 +39,7 @@ class CCleanDropedBasket
 		$basket = array();
 		$dbBasketItems = CSaleBasket::GetList(array("NAME" => "ASC", "ID" => "ASC"), $arFilter, false,false, array("ID"));
 		while ($arItems = $dbBasketItems->Fetch()){
-			$_SESSION['cleanmaster']['diagnostic']['dropbasket']['basket']++;
+			$_SESSION['master']['diagnostic']['dropbasket']['basket']++;
 		}
 		return false;
 	}

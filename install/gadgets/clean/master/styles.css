@@ -1,4 +1,8 @@
-.acrit-info-widget{
+/*
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
+.clean-info-widget{
     background: rgba(0,0,0,0);
     overflow: hidden;
     position: relative;
@@ -12,7 +16,7 @@
     min-width: 355px;
 }
 
-.acrit-info-widget .show-gadget-title{
+.clean-info-widget .show-gadget-title{
     color: #1a1b1c;
     font-size: 20px;
     padding-left: 4px;
@@ -23,7 +27,7 @@
     height: 25px;
 }
 
-.acrit-info-widget .show-info-row{
+.clean-info-widget .show-info-row{
     color: #69808e;
     font-size: 14px;
     padding-left: 4px;
@@ -32,7 +36,7 @@
     height: 20px;
 }
 
-.acrit-info-widget .acrit-info-widget-button{
+.clean-info-widget .clean-info-widget-button{
     border-radius: 3px;
     display: inline-block;
     height: 15px;
@@ -44,7 +48,7 @@
     margin: 10px 15px 0px 5px;
 }
 
-.acrit-info-widget .acrit-info-widget-button .acrit-info-widget-button-text{
+.clean-info-widget .clean-info-widget-button .clean-info-widget-button-text{
     line-height: 16px;
     color: #ffffff;
     font-size: 16px;
@@ -52,25 +56,25 @@
     text-shadow: 0 -1px 0 rgba(106,109,111,0.3);
 }
 
-.acrit-info-widget .acrit-info-widget-button:hover{
+.clean-info-widget .clean-info-widget-button:hover{
     background: #3498db;
 }
 
-.acrit-info-widget .acrit-info-widget-button.acrit-info-widget-button-buy{
+.clean-info-widget .clean-info-widget-button.clean-info-widget-button-buy{
     border: 1px solid #27ae60;
     background: #27ae60;
     float: none;
 }
 
-.acrit-info-widget .acrit-info-widget-button.acrit-info-widget-button-buy:hover{
+.clean-info-widget .clean-info-widget-button.clean-info-widget-button-buy:hover{
     background: #2ecc71;
 }
 
-.acrit-info-widget .acrit-info-widget-button.acrit-info-widget-button-buy .acrit-info-widget-button-text{
+.clean-info-widget .clean-info-widget-button.clean-info-widget-button-buy .clean-info-widget-button-text{
     text-shadow: 0 -1px 0 rgba(106,109,111,0.3);
 }
 
-.acrit-info-widget .logo{
+.clean-info-widget .logo{
     background: rgba(0,0,0,0) url(images/logo.png) no-repeat scroll 0 0;
     height: 50px;
     position: absolute;
@@ -79,6 +83,6 @@
     width: 136px;
 }
 
-.acrit-info-widget + .bx-gadgets-color-config-close{background:rgba(0,0,0,0) url("images/icons.png") no-repeat scroll 0 0;height:20px;position:absolute;right:15px;top:6px;width:20px;display:none;}
-.acrit-info-widget:hover + .bx-gadgets-color-config-close, .acrit-info-widget + .bx-gadgets-color-config-close:hover{display:block;}
-.acrit-info-widget + .bx-gadgets-color-config-close + .bx-gadgets-side{background:rgba(0,0,0,0) url("images/stitch.png") repeat-y scroll left top;}
+.clean-info-widget + .bx-gadgets-color-config-close{background:rgba(0,0,0,0) url("images/icons.png") no-repeat scroll 0 0;height:20px;position:absolute;right:15px;top:6px;width:20px;display:none;}
+.clean-info-widget:hover + .bx-gadgets-color-config-close, .clean-info-widget + .bx-gadgets-color-config-close:hover{display:block;}
+.clean-info-widget + .bx-gadgets-color-config-close + .bx-gadgets-side{background:rgba(0,0,0,0) url("images/stitch.png") repeat-y scroll left top;}

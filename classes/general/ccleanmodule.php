@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanModule extends TCleanMasterFunctions
 {
@@ -52,7 +55,7 @@ class CCleanModule extends TCleanMasterFunctions
 	}
 
 	/**
-	 * Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+	 * ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	 *
 	 * @param string $step
 	 *
@@ -94,7 +97,7 @@ class CCleanModule extends TCleanMasterFunctions
 		}
 		foreach ($arModules as $module_id => $value) {
 			if (!$value['IsInstalled']) {
-				$_SESSION['cleanmaster']['diagnostic']['module']['modules'][$module_id] = $this->GetDirSize($this->documentRoot.$value['DIR'].'/');
+				$_SESSION['master']['diagnostic']['module']['modules'][$module_id] = $this->GetDirSize($this->documentRoot.$value['DIR'].'/');
 			}
 		}
 		return false;

@@ -1,32 +1,36 @@
 <?
-$MESS["CLEANMASTER_ACTION_1_DELETE_IBLOCK"] = "Следующие инфоблоки будут удалены";
-$MESS["CLEANMASTER_ACTION_2_CLEAR_SUCCESS"] = "Чистка неиспользуемых шаблонов завершена.";
-$MESS["CLEANMASTER_ACTION_3_CLEAR_SUCCESS"] = "Чистка неактивных элементов инфоблоков завершена.";
-$MESS["CLEANMASTER_ACTION_4_CLEAR_SUCCESS"] = "Чистка неактивных почтовых шаблонов завершена.";
-$MESS["CLEANMASTER_ACTION_5_CLEAR_STEP"] = "Шаг";
-$MESS["CLEANMASTER_ACTION_5_CLEAR_DELETE"] = "Удалить";
-$MESS["CLEANMASTER_ACTION_5_CLEAR_STEP_DESCR"] = "Идет процесс очистки...";
-$MESS["CLEANMASTER_ACTION_5_DELETE_TMP"] = " Для освобождения места и удаления найденных незарегистрированных файлов нажмите кнопку удаления временной папки.<br><br><a id=\"action_5_delete\" class='adm-btn adm-btn-save' style='cursor:pointer'>Удалить временную папку</a>";
-$MESS["CLEANMASTER_ACTION_5_CLEAR_SUCCESS"] = "Очистка папки Upload завершена.";
-$MESS["CLEANMASTER_ACTION_5_CLEAR_SUCCESS2"] = "Очистка папки Upload завершена. Временная папка удалена.";
-$MESS["CLEANMASTER_ACTION_6_CLEAR_SUCCESS"] = "Неактивные пользователи, их заказы, счета, сообщения на форуме и блоги удалены.";
-$MESS["CLEANMASTER_ACTION_7_CLEAR_SUCCESS"] = "Статистика удалена.";
-$MESS["CLEANMASTER_ACTION_8_CLEAR_SUCCESS"] = "Кэш удален.";
-$MESS["CLEANMASTER_ACTION_9_CLEAR_SUCCESS"] = "Журнал вторжений очищен.";
-$MESS["CLEANMASTER_ACTION_10_CLEAR_SUCCESS"] = "Веб-статистика очищена.";
-$MESS["CLEANMASTER_ACTION_11_CLEAR_SUCCESS"] = "Неоформленные корзины удалены.";
-$MESS["CLEANMASTER_ACTION_12_CLEAR_SUCCESS"] = "Подписчики с неподтвержденными адресами удалены.";
-$MESS["CLEANMASTER_ACTION_13_CLEAR_SUCCESS"] = "История почтовых событий удалена.";
-$MESS["CLEANMASTER_ACTION_14_CLEAR_SUCCESS"] = "История веб-форм удалена.";
-$MESS["CLEANMASTER_ACTION_16_CLEAR_SUCCESS"] = "Очистка языковых файлов завершена.";
-$MESS["CLEANMASTER_ACTION_17_CLEAR_SUCCESS"] = "Удаленные модули стерты.";
-$MESS["CLEANMASTER_ACTION_20_CLEAR_STEP_DESCR"] = "Идет процесс очистки...";
-$MESS["CLEANMASTER_ACTION_20_CLEAR_SUCCESS"] = "Неиспользуемые компоненты удалены. Для полной очистки необходимо повторить данное действие, пока результат не будет пустым.";
-$MESS["CLEANMASTER_ACTION_21_CLEAR_SUCCESS"] = "Выпуски рассылки за выбранный период удалены.";
-$MESS["CLEANMASTER_ACTION_22_CLEAR_SUCCESS"] = "Статистика монитора производительности очищена.";
-$MESS["CLEANMASTER_ACTION_23_CLEAR_SUCCESS"] = "Последние просмотренные товары очищены";
-$MESS["CLEANMASTER_ACTION_CLEANSTART"] = "Запустить очистку";
-$MESS["ACRIT_CLEANMASTER_DOSTUP_K_MODULU_ZAPR"] = "Доступ к модулю запрещен.";
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
+$MESS["MASTER_ACTION_1_DELETE_IBLOCK"] = "Следующие инфоблоки будут удалены";
+$MESS["MASTER_ACTION_2_CLEAR_SUCCESS"] = "Чистка неиспользуемых шаблонов завершена.";
+$MESS["MASTER_ACTION_3_CLEAR_SUCCESS"] = "Чистка неактивных элементов инфоблоков завершена.";
+$MESS["MASTER_ACTION_4_CLEAR_SUCCESS"] = "Чистка неактивных почтовых шаблонов завершена.";
+$MESS["MASTER_ACTION_5_CLEAR_STEP"] = "Шаг";
+$MESS["MASTER_ACTION_5_CLEAR_DELETE"] = "Удалить";
+$MESS["MASTER_ACTION_5_CLEAR_STEP_DESCR"] = "Идет процесс очистки...";
+$MESS["MASTER_ACTION_5_DELETE_TMP"] = " Для освобождения места и удаления найденных незарегистрированных файлов нажмите кнопку удаления временной папки.<br><br><a id=\"action_5_delete\" class='adm-btn adm-btn-save' style='cursor:pointer'>Удалить временную папку</a>";
+$MESS["MASTER_ACTION_5_CLEAR_SUCCESS"] = "Очистка папки Upload завершена.";
+$MESS["MASTER_ACTION_5_CLEAR_SUCCESS2"] = "Очистка папки Upload завершена. Временная папка удалена.";
+$MESS["MASTER_ACTION_6_CLEAR_SUCCESS"] = "Неактивные пользователи, их заказы, счета, сообщения на форуме и блоги удалены.";
+$MESS["MASTER_ACTION_7_CLEAR_SUCCESS"] = "Статистика удалена.";
+$MESS["MASTER_ACTION_8_CLEAR_SUCCESS"] = "Кэш удален.";
+$MESS["MASTER_ACTION_9_CLEAR_SUCCESS"] = "Журнал вторжений очищен.";
+$MESS["MASTER_ACTION_10_CLEAR_SUCCESS"] = "Веб-статистика очищена.";
+$MESS["MASTER_ACTION_11_CLEAR_SUCCESS"] = "Неоформленные корзины удалены.";
+$MESS["MASTER_ACTION_12_CLEAR_SUCCESS"] = "Подписчики с неподтвержденными адресами удалены.";
+$MESS["MASTER_ACTION_13_CLEAR_SUCCESS"] = "История почтовых событий удалена.";
+$MESS["MASTER_ACTION_14_CLEAR_SUCCESS"] = "История веб-форм удалена.";
+$MESS["MASTER_ACTION_16_CLEAR_SUCCESS"] = "Очистка языковых файлов завершена.";
+$MESS["MASTER_ACTION_17_CLEAR_SUCCESS"] = "Удаленные модули стерты.";
+$MESS["MASTER_ACTION_20_CLEAR_STEP_DESCR"] = "Идет процесс очистки...";
+$MESS["MASTER_ACTION_20_CLEAR_SUCCESS"] = "Неиспользуемые компоненты удалены. Для полной очистки необходимо повторить данное действие, пока результат не будет пустым.";
+$MESS["MASTER_ACTION_21_CLEAR_SUCCESS"] = "Выпуски рассылки за выбранный период удалены.";
+$MESS["MASTER_ACTION_22_CLEAR_SUCCESS"] = "Статистика монитора производительности очищена.";
+$MESS["MASTER_ACTION_23_CLEAR_SUCCESS"] = "Последние просмотренные товары очищены";
+$MESS["MASTER_ACTION_CLEANSTART"] = "Запустить очистку";
+$MESS["CLEAN_MASTER_DOSTUP_K_MODULU_ZAPR"] = "Доступ к модулю запрещен.";
 $MESS["site"] = "Удаление неактивных сайтов";
 $MESS["templates"] = "Удаление неиспользуемых шаблонов сайтов";
 $MESS["ibelement"] = "Удаление неактивных элементов инфоблоков";
@@ -85,50 +89,50 @@ $MESS['progress'] = '<div class="adm-info-message-wrap adm-info-message-gray">
 		<div class="adm-info-message-buttons"></div>
 	</div>
 </div>';
-$MESS["ACRTT_CLEANMASTER_DIAGNOSTIC_TABLE_ROW"] = "<tr class='adm-list-table-row'>
+$MESS["ACRTT_MASTER_DIAGNOSTIC_TABLE_ROW"] = "<tr class='adm-list-table-row'>
     <td class='adm-list-table-cell'><input type='checkbox' name='action[#ID#]' value='#ID#'></td>
     <td class='adm-list-table-cell'>#NAME#</td>
     <td class='adm-list-table-cell'>#DESCRIPTION#</td>
     <td class='adm-list-table-cell' align='center'>#SIZE#</td>
 </tr>";
-$MESS["ACRTT_CLEANMASTER_DIAGNOSTIC_TABLE_ROW_DEMO"] = "<tr class='adm-list-table-row'>
+$MESS["ACRTT_MASTER_DIAGNOSTIC_TABLE_ROW_DEMO"] = "<tr class='adm-list-table-row'>
     <td class='adm-list-table-cell'>#NAME#</td>
     <td class='adm-list-table-cell'>#DESCRIPTION#</td>
     <td class='adm-list-table-cell' align='center'>#SIZE#</td>
 </tr>";
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_STEP'] = '. Шаг #STEP#';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_TEMPLATE'] = 'Шаблоны:';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_UPLOAD'] = 'Папка Upload:';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_SITE'] = 'Сайты:';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_SITE_IBLOCK'] = 'Инфоблоки:';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_MODULE'] = 'Неустановленные модули:';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_RECORDS'] = 'Строк для удаления за срок позднее 30 дней : <b>#RECORDS#</b>';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_BASKET'] = 'Найдено брошенных корзин : <b>#BASKET#</b>';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_DELRECORD'] = 'Записей для удаления за срок позднее 30 дней : <b>#DELRECORD#</b>';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_LANG'] = 'Языковые файлы. При очистке необходимо выбрать <b>нужные языки</b>, остальные будут удалены';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_TEMPLATE_TITLE'] = 'Языковые файлы. При очистке необходимо выбрать <b>нужные языки</b>, остальные будут удалены';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_TEMPLATE_ITEM'] = 'Идентификатор: #ID#; Событие: #EVENT_NAME#';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_USER_TITLE'] = 'Не активные пользователи:';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_USER_ITEM'] = 'Логин: #LOGIN#; E-mail: #EMAIL#; Идентификатор: #ID#';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_USER_NOTAUTH_TITLE'] = 'Ни разу не авторизованные пользователи:';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_TABLE_HEAD'] = '<thead><tr class="adm-list-table-header adm-list-table-row">
+$MESS['CLEAN_MASTER_DIAGNOSTIC_STEP'] = '. Шаг #STEP#';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_TEMPLATE'] = 'Шаблоны:';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_UPLOAD'] = 'Папка Upload:';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_SITE'] = 'Сайты:';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_SITE_IBLOCK'] = 'Инфоблоки:';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_MODULE'] = 'Неустановленные модули:';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_RECORDS'] = 'Строк для удаления за срок позднее 30 дней : <b>#RECORDS#</b>';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_BASKET'] = 'Найдено брошенных корзин : <b>#BASKET#</b>';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_DELRECORD'] = 'Записей для удаления за срок позднее 30 дней : <b>#DELRECORD#</b>';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_LANG'] = 'Языковые файлы. При очистке необходимо выбрать <b>нужные языки</b>, остальные будут удалены';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_TEMPLATE_TITLE'] = 'Языковые файлы. При очистке необходимо выбрать <b>нужные языки</b>, остальные будут удалены';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_TEMPLATE_ITEM'] = 'Идентификатор: #ID#; Событие: #EVENT_NAME#';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_USER_TITLE'] = 'Не активные пользователи:';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_USER_ITEM'] = 'Логин: #LOGIN#; E-mail: #EMAIL#; Идентификатор: #ID#';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_USER_NOTAUTH_TITLE'] = 'Ни разу не авторизованные пользователи:';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_TABLE_HEAD'] = '<thead><tr class="adm-list-table-header adm-list-table-row">
     <td class="adm-list-table-cell adm-list-table-cell-inner"><div class="adm-list-table-cell-inner">ID</div></td>
     <td class="adm-list-table-cell adm-list-table-cell-inner"><div class="adm-list-table-cell-inner">Наименование</div></td>
     <td class="adm-list-table-cell adm-list-table-cell-inner"><div class="adm-list-table-cell-inner">Описание</div></td>
     <td class="adm-list-table-cell adm-list-table-cell-inner"><div class="adm-list-table-cell-inner">Размер (МБ)</div></td>
 </tr></thead>';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_TABLE_HEAD_DEMO'] = '<thead><tr class="adm-list-table-header adm-list-table-row">
+$MESS['CLEAN_MASTER_DIAGNOSTIC_TABLE_HEAD_DEMO'] = '<thead><tr class="adm-list-table-header adm-list-table-row">
     <td class="adm-list-table-cell adm-list-table-cell-inner"><div class="adm-list-table-cell-inner">Наименование</div></td>
     <td class="adm-list-table-cell adm-list-table-cell-inner"><div class="adm-list-table-cell-inner">Описание</div></td>
     <td class="adm-list-table-cell adm-list-table-cell-inner"><div class="adm-list-table-cell-inner">Размер (МБ)</div></td>
 </tr></thead>';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_TABLE_FOOT'] = '
+$MESS['CLEAN_MASTER_DIAGNOSTIC_TABLE_FOOT'] = '
 <tr class="adm-list-table-row adm-list-table-footer"><td></td><td></td><td align="right"><b style="margin-right: 20px">Итого:</b></td><td><b>~#SUM#</b></td></tr>
 ';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_TABLE_FOOT_DEMO'] = '
+$MESS['CLEAN_MASTER_DIAGNOSTIC_TABLE_FOOT_DEMO'] = '
 <tr class="adm-list-table-row adm-list-table-footer"><td></td><td align="right"><b style="margin-right: 20px">Итого:</b></td><td><b>~#SUM#</b></td></tr>
 ';
-$MESS['ACRIT_CLEANMASTER_SHOW_MORE'] = 'Развернуть или свернуть';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_COMPONENTS'] = 'Неиспользуемые компоненты';
-$MESS['ACRIT_CLEANMASTER_DIAGNOSTIC_JS_ERROR'] = 'Возникла ошибка, обновите страницу и повторите операцию: ';
+$MESS['CLEAN_MASTER_SHOW_MORE'] = 'Развернуть или свернуть';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_COMPONENTS'] = 'Неиспользуемые компоненты';
+$MESS['CLEAN_MASTER_DIAGNOSTIC_JS_ERROR'] = 'Возникла ошибка, обновите страницу и повторите операцию: ';
 ?>

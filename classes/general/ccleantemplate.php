@@ -1,5 +1,9 @@
 <?php
 /**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
+/**
  * Summary
  */
 
@@ -15,7 +19,7 @@ class CCleanTemplate extends TCleanMasterFunctions {
     public function __construct()
     {
         $this->templateDir = '/bitrix/templates/';
-        $this->tmpDir = '/bitrix/templates_cleanmaster/';
+        $this->tmpDir = '/bitrix/templates_master/';
         $this->documentRoot = Bitrix\Main\Application::getDocumentRoot();
         $this->templateDirFull = $this->documentRoot.$this->templateDir;
         $this->tmpDirFull = $this->documentRoot.$this->tmpDir;
@@ -36,7 +40,7 @@ class CCleanTemplate extends TCleanMasterFunctions {
     public function GetUsedTemplates()
 	{
 		$sites = CSite::GetList($by="sort", $order="desc", Array());
-		while ($arSite = $sites->Fetch()) { // Ïîëó÷àåì âñå èñïîëüçóåìûå øàáëîíû
+		while ($arSite = $sites->Fetch()) { // ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð²ÑÐµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÐ¼Ñ‹Ðµ ÑˆÐ°Ð±Ð»Ð¾Ð½Ñ‹
 			$dbSiteRes = CSite::GetTemplateList($arSite['ID']);
 			while($arSiteRes = $dbSiteRes->Fetch()) {
 				$u_templates[] = $arSiteRes['TEMPLATE'];
@@ -89,13 +93,13 @@ class CCleanTemplate extends TCleanMasterFunctions {
 	}
 	
 	/*
-		Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+		ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	*/
 	public function GetDiagnosticData($step = false)
 	{
 		$templates = $this->GetUnusedTemplates();
 		foreach($templates as $template)
-			$_SESSION['cleanmaster']['diagnostic']['templates']['templates'][$template] = $this->GetDirSize($this->templateDirFull.$template.'/');
+			$_SESSION['master']['diagnostic']['templates']['templates'][$template] = $this->GetDirSize($this->templateDirFull.$template.'/');
 		return false;
 	}
 }

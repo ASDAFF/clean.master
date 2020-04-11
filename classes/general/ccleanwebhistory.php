@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanWebHistory extends TCleanMasterFunctions {
     
@@ -18,15 +20,15 @@ class CCleanWebHistory extends TCleanMasterFunctions {
 		}
 	}
 	/*
-		Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+		ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	*/
 	public function GetDiagnosticData($step = false)
 	{
 		if (!@CModule::IncludeModule('statistic'))
 			return false;
 		global $DB;
-		$_SESSION['cleanmaster']['diagnostic']['webhist']['size'] = 0;
-		$_SESSION['cleanmaster']['diagnostic']['webhist']['record'] = 0;
+		$_SESSION['master']['diagnostic']['webhist']['size'] = 0;
+		$_SESSION['master']['diagnostic']['webhist']['record'] = 0;
 		$arDBSize = $this->GetDBSize();
 		$cleanup_date = time() - 2592000;
 		$arrTables = array(
@@ -55,13 +57,13 @@ class CCleanWebHistory extends TCleanMasterFunctions {
 		{
 			$strSql = "SELECT COUNT(ID) FROM $table_name WHERE $date_name<FROM_UNIXTIME('$cleanup_date')";
             $arCnt = $DB->Query($strSql, false, $err_mess.__LINE__)->Fetch();
-			$_SESSION['cleanmaster']['diagnostic']['webhist']['tables'][$table_name]['record'] = intval($arCnt['COUNT(ID)']);
+			$_SESSION['master']['diagnostic']['webhist']['tables'][$table_name]['record'] = intval($arCnt['COUNT(ID)']);
 			if($arDBSize[$table_name]['table_rows'] <= 0)
-				$_SESSION['cleanmaster']['diagnostic']['webhist']['tables'][$table_name]['size'] = 0;
+				$_SESSION['master']['diagnostic']['webhist']['tables'][$table_name]['size'] = 0;
 			else
-				$_SESSION['cleanmaster']['diagnostic']['webhist']['tables'][$table_name]['size'] = $arDBSize[$table_name]['total_size_mb'] / $arDBSize[$table_name]['table_rows'] * $arCnt['COUNT(ID)'];
-			$_SESSION['cleanmaster']['diagnostic']['webhist']['size'] += $_SESSION['cleanmaster']['diagnostic']['webhist']['tables'][$table_name]['size'];
-			$_SESSION['cleanmaster']['diagnostic']['webhist']['record'] += $_SESSION['cleanmaster']['diagnostic']['webhist']['tables'][$table_name]['record'];
+				$_SESSION['master']['diagnostic']['webhist']['tables'][$table_name]['size'] = $arDBSize[$table_name]['total_size_mb'] / $arDBSize[$table_name]['table_rows'] * $arCnt['COUNT(ID)'];
+			$_SESSION['master']['diagnostic']['webhist']['size'] += $_SESSION['master']['diagnostic']['webhist']['tables'][$table_name]['size'];
+			$_SESSION['master']['diagnostic']['webhist']['record'] += $_SESSION['master']['diagnostic']['webhist']['tables'][$table_name]['record'];
 		}
 		return false;
 	}

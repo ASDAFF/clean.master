@@ -1,4 +1,8 @@
 <?php
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
 IncludeModuleLangFile(__FILE__);
 
 
@@ -75,7 +79,7 @@ class CCleanSite {
 				{
 					if(CIBlock::Delete($ar_res['ID']))
 					{
-						$processReport['success'][] = GetMessage("ACRIT_CLEANMASTER_INFOBLOK", array('#IBLOCK_ID#' => $ar_res['ID'], '#IBLOCK_NAME#' => $ar_res['NAME']));
+						$processReport['success'][] = GetMessage("CLEAN_MASTER_INFOBLOK", array('#IBLOCK_ID#' => $ar_res['ID'], '#IBLOCK_NAME#' => $ar_res['NAME']));
 					}
 					else
 					{
@@ -87,10 +91,10 @@ class CCleanSite {
 
 			if (CSite::Delete($site_id) === false){
 				if($ex = $this->app->GetException())
-					$processReport['error'][] = str_replace('#SITE#', $site_id, GetMessage('CLEANMASTER_ACTION_1_SITE')).$ex->GetString();
+					$processReport['error'][] = str_replace('#SITE#', $site_id, GetMessage('MASTER_ACTION_1_SITE')).$ex->GetString();
 			}
 			else{
-				$processReport['success'][] = GetMessage('CLEANMASTER_ACTION_1_SITE_DELETED', array('#SITE#' => $site_id));
+				$processReport['success'][] = GetMessage('MASTER_ACTION_1_SITE_DELETED', array('#SITE#' => $site_id));
 			}
 			if(!in_array($site_dir, $activeSiteDir))
 			{
@@ -102,14 +106,14 @@ class CCleanSite {
     }
 	
 	/*
-		Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+		ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	*/
 	public function GetDiagnosticData($step = false)
 	{
 		$anactiveSites = $this->GetInactiveSites();
 		$anactiveSitesIB = $this->GetSitesIBlock($anactiveSites);
-		$_SESSION['cleanmaster']['diagnostic']['site']['site'] = $anactiveSites;
-		$_SESSION['cleanmaster']['diagnostic']['site']['iblock'] = $anactiveSitesIB;
+		$_SESSION['master']['diagnostic']['site']['site'] = $anactiveSites;
+		$_SESSION['master']['diagnostic']['site']['iblock'] = $anactiveSitesIB;
 		return false;
 	}
 }

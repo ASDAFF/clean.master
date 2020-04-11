@@ -1,4 +1,8 @@
 <?php
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
 // turn off file cache buckets create
 define('CACHED_b_file', false);
 define("CACHED_b_file_bucket_size", 0);
@@ -9,11 +13,11 @@ set_time_limit(300);
 
 IncludeModuleLangFile(__FILE__);
 
-if ($APPLICATION->GetUserRight('acrit.cleanmaster') <= 'D') {
+if ($APPLICATION->GetUserRight('clean.master') <= 'D') {
     $processorResult = array(
         'result' => 'FAIL',
         'message' => CAdminMessage::ShowMessage(array(
-            'MESSAGE' => GetMessage("ACRIT_CLEANMASTER_DOSTUP_K_MODULU_ZAPR"),
+            'MESSAGE' => GetMessage("CLEAN_MASTER_DOSTUP_K_MODULU_ZAPR"),
             'TYPE' => 'FAIL',
             'HTML' => true
         ))
@@ -22,7 +26,7 @@ if ($APPLICATION->GetUserRight('acrit.cleanmaster') <= 'D') {
 	die();
 }
 
-CModule::IncludeModule('acrit.cleanmaster');
+CModule::IncludeModule('clean.master');
 
 global $action, $funcName, $isDemo;
 
@@ -41,7 +45,7 @@ function diagnostic()
 	global $diagnosticStep, $isDemo, $APPLICATION;
 	if ($diagnosticStep == 1)
 	{
-		$_SESSION['cleanmaster']['diagnostic'] = array(
+		$_SESSION['master']['diagnostic'] = array(
 			'upload' => array('complete' => false, 'step' => 0, 'class' => 'CCleanUpload', 'method' => 'GetDiagnosticData', 'id' => 5),
 			// turn off this diagnostic. its unused TODO 2.1.7
 			/*'iblock' => array('complete' => false, 'step' => 1, 'class' => 'CCleanUpload', 'method' => 'GetDiagnosticIBlockData','id' => 5),
@@ -60,20 +64,20 @@ function diagnostic()
 			'component' => array('complete' => false, 'step' => 1, 'class' => 'CCleanComponent', 'method' => 'GetDiagnosticData', 'id' => 20),
 		);
 		if (CModule::IncludeModule('sale')) {
-			$_SESSION['cleanmaster']['diagnostic']['orderstat'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanOrderStat', 'method' => 'GetDiagnosticData', 'id' => 7);
-			$_SESSION['cleanmaster']['diagnostic']['dropbasket'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanDropedBasket', 'method' => 'GetDiagnosticData', 'id' => 11);
-			$_SESSION['cleanmaster']['diagnostic']['saleviewed'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanSaleViewed', 'method' => 'GetDiagnosticData', 'id' => 23);
+			$_SESSION['master']['diagnostic']['orderstat'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanOrderStat', 'method' => 'GetDiagnosticData', 'id' => 7);
+			$_SESSION['master']['diagnostic']['dropbasket'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanDropedBasket', 'method' => 'GetDiagnosticData', 'id' => 11);
+			$_SESSION['master']['diagnostic']['saleviewed'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanSaleViewed', 'method' => 'GetDiagnosticData', 'id' => 23);
 		}
 		if (CModule::IncludeModule('statistic')) {
-			$_SESSION['cleanmaster']['diagnostic']['attackevent'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanAttackEvent', 'method' => 'GetDiagnosticData', 'id' => 9);
-			$_SESSION['cleanmaster']['diagnostic']['webhist'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanWebHistory', 'method' => 'GetDiagnosticData', 'id' => 10);
+			$_SESSION['master']['diagnostic']['attackevent'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanAttackEvent', 'method' => 'GetDiagnosticData', 'id' => 9);
+			$_SESSION['master']['diagnostic']['webhist'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanWebHistory', 'method' => 'GetDiagnosticData', 'id' => 10);
 		}
 		if (CModule::IncludeModule('subscribe')) {
-			$_SESSION['cleanmaster']['diagnostic']['rubric'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanSubscribe', 'method' => 'GetDiagnosticDataRubric', 'id' => 21);
-			$_SESSION['cleanmaster']['diagnostic']['unconfirmed'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanSubscribe', 'method' => 'GetDiagnosticDataUnconfirmed', 'id' => 12);
+			$_SESSION['master']['diagnostic']['rubric'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanSubscribe', 'method' => 'GetDiagnosticDataRubric', 'id' => 21);
+			$_SESSION['master']['diagnostic']['unconfirmed'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanSubscribe', 'method' => 'GetDiagnosticDataUnconfirmed', 'id' => 12);
 		}
 		if (CModule::IncludeModule('perfmon')) {
-			$_SESSION['cleanmaster']['diagnostic']['perfmon'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanPerfmon', 'method' => 'GetDiagnosticData', 'id' => 22);
+			$_SESSION['master']['diagnostic']['perfmon'] = array('complete' => false, 'step' => 1, 'class' => 'CCleanPerfmon', 'method' => 'GetDiagnosticData', 'id' => 22);
 		}
 	}
 
@@ -81,21 +85,21 @@ function diagnostic()
 	$progressBar = '';
 	$message = '';
 	$stepCnt = 0;
-	foreach ($_SESSION['cleanmaster']['diagnostic'] as $key => $proc)
+	foreach ($_SESSION['master']['diagnostic'] as $key => $proc)
 	{
 		$stepCnt++;
 		if ($proc['complete'] === false) {
 			$progressBar = GetMessage('progress', array(
-				'#NAME#' => $proc['step'] > 1 ? GetMessage($key.'_analize').GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_STEP', array('#STEP#' => $proc['step'])) : GetMessage($key.'_analize'),
-				'#PERSENT_VALUE#' => intval($stepCnt/count($_SESSION['cleanmaster']['diagnostic'])*500),
-				'#PERSENT#' => intval($stepCnt/count($_SESSION['cleanmaster']['diagnostic'])*100),
+				'#NAME#' => $proc['step'] > 1 ? GetMessage($key.'_analize').GetMessage('CLEAN_MASTER_DIAGNOSTIC_STEP', array('#STEP#' => $proc['step'])) : GetMessage($key.'_analize'),
+				'#PERSENT_VALUE#' => intval($stepCnt/count($_SESSION['master']['diagnostic'])*500),
+				'#PERSENT#' => intval($stepCnt/count($_SESSION['master']['diagnostic'])*100),
 			));
 
 			$obj = new $proc['class'];
 			if (($freeSpace = $obj->{$proc['method']}( $proc['step'] )) !== false) {
-				$_SESSION['cleanmaster']['diagnostic'][$key]['step']++;
+				$_SESSION['master']['diagnostic'][$key]['step']++;
 			} else {
-				$_SESSION['cleanmaster']['diagnostic'][$key]['complete'] = true;
+				$_SESSION['master']['diagnostic'][$key]['complete'] = true;
 			}
 			$continue = true;
 			break;
@@ -109,18 +113,18 @@ function diagnostic()
         <script>
             $.ajax({
                 method: 'POST',
-                url: '/bitrix/admin/acrit_cleanmaster_processor.php',
+                url: '/bitrix/admin/clean_master_processor.php',
                 data: 'funcName=diagnostic',
                 success: function(data){
         			try {
 						var obj = JSON.parse(data);
 
         				if (obj.result == 'OK' && obj.action == 'process') {
-	                        $('.cleanmaster-area form').first().html(obj.DATA);
+	                        $('.master-area form').first().html(obj.DATA);
 	                        $('.progress-bar').html(obj.PROGRESS);
 	                    }
 					} catch (e) {
-        			    alert("<?=GetMessage("ACRIT_CLEANMASTER_DIAGNOSTIC_JS_ERROR")?>\n" + e.toString() + "\n\n" + data);
+        			    alert("<?=GetMessage("CLEAN_MASTER_DIAGNOSTIC_JS_ERROR")?>\n" + e.toString() + "\n\n" + data);
                         console.log( e );
         			    console.log( data );
     				}
@@ -135,12 +139,12 @@ function diagnostic()
 		$message .= '<div class="adm-list-table-wrap" id="bx_admin_prefix"><table class="adm-list-table">';
 
 		if($isDemo == 1)
-			$message .= GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_TABLE_HEAD');
+			$message .= GetMessage('CLEAN_MASTER_DIAGNOSTIC_TABLE_HEAD');
 		else
-			$message .= GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_TABLE_HEAD_DEMO');
+			$message .= GetMessage('CLEAN_MASTER_DIAGNOSTIC_TABLE_HEAD_DEMO');
 		$summ = 0;
 
-		foreach($_SESSION['cleanmaster']['diagnostic'] as $key => $value)
+		foreach($_SESSION['master']['diagnostic'] as $key => $value)
 		{
 			if($key == 'iblock' || $key == 'props' || $key == 'section')
 				continue;
@@ -178,7 +182,7 @@ function diagnostic()
 				case 'templates':
 					if(count($value['templates']) > 0 && is_array($value['templates']))
 					{
-						$description .= '<b>'.GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_TEMPLATE').'</b>';
+						$description .= '<b>'.GetMessage('CLEAN_MASTER_DIAGNOSTIC_TEMPLATE').'</b>';
 						$description .= '<ul>';
 						foreach($value['templates'] as $dk => $dir)
 						{
@@ -204,7 +208,7 @@ function diagnostic()
 								$description .= '<li>'.$elem.'</li>';
 							}
 							if($elCnt > 5)
-								$description .= '</div><a onclick="$(this).siblings(\'div\').toggle()" href="javascript:void(0);">'.GetMessage('ACRIT_CLEANMASTER_SHOW_MORE').'</a>';
+								$description .= '</div><a onclick="$(this).siblings(\'div\').toggle()" href="javascript:void(0);">'.GetMessage('CLEAN_MASTER_SHOW_MORE').'</a>';
 							$description .= '</ul>';
 						}
 					}
@@ -213,10 +217,10 @@ function diagnostic()
 					$size = 'N/A';
 					if(count($value['template']) > 0 && is_array($value['template']))
 					{
-						$description = '<b>'.GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_TEMPLATE_TITLE').'</b>';
+						$description = '<b>'.GetMessage('CLEAN_MASTER_DIAGNOSTIC_TEMPLATE_TITLE').'</b>';
 						$description .= '<ul>';
 						foreach($value['template'] as $template)
-							$description .= '<li>'.GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_TEMPLATE_ITEM', array('#ID#' => $template['ID'], '#EVENT_NAME#' => $template['EVENT_NAME'])).'</li>';
+							$description .= '<li>'.GetMessage('CLEAN_MASTER_DIAGNOSTIC_TEMPLATE_ITEM', array('#ID#' => $template['ID'], '#EVENT_NAME#' => $template['EVENT_NAME'])).'</li>';
 						$description .= '</ul>';
 					}
 					break;
@@ -224,7 +228,7 @@ function diagnostic()
 					$size = 'N/A';
 					if(count($value['site']) > 0 && is_array($value['site']))
 					{
-						$description .= '<b>'.GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_SITE').'</b>';
+						$description .= '<b>'.GetMessage('CLEAN_MASTER_DIAGNOSTIC_SITE').'</b>';
 						$description .= '<ul>';
 						foreach($value['site'] as $site)
 						{
@@ -234,7 +238,7 @@ function diagnostic()
 					}
 					if(count($value['iblock']) > 0 && is_array($value['iblock']))
 					{
-						$description .= '<b>'.GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_SITE_IBLOCK').'</b>';
+						$description .= '<b>'.GetMessage('CLEAN_MASTER_DIAGNOSTIC_SITE_IBLOCK').'</b>';
 						$description .= '<ul>';
 						foreach($value['iblock'] as $iblock)
 						{
@@ -247,39 +251,39 @@ function diagnostic()
 					$size = 'N/A';
 					if(count($value['inactive']) > 0  && is_array($value['inactive']))
 					{
-						$description .= '<b>'.GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_USER_TITLE').'</b>';
+						$description .= '<b>'.GetMessage('CLEAN_MASTER_DIAGNOSTIC_USER_TITLE').'</b>';
 						$description .= '<ul>';
 						$elCnt = 0;
 						foreach($value['inactive'] as $user)
 						{
 							if($elCnt++ == 5)
 								$description .= '<div style="display: none">';
-							$description .= '<li>'.GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_USER_ITEM', array('#ID#' => $user['ID'], '#LOGIN#' => $user['LOGIN'], '#EMAIL#' => $user['EMAIL'])).'</li>';
+							$description .= '<li>'.GetMessage('CLEAN_MASTER_DIAGNOSTIC_USER_ITEM', array('#ID#' => $user['ID'], '#LOGIN#' => $user['LOGIN'], '#EMAIL#' => $user['EMAIL'])).'</li>';
 						}
 						if($elCnt > 5)
-							$description .= '</div><a onclick="$(this).siblings(\'div\').toggle()" href="javascript:void(0);">'.GetMessage('ACRIT_CLEANMASTER_SHOW_MORE').'</a>';
+							$description .= '</div><a onclick="$(this).siblings(\'div\').toggle()" href="javascript:void(0);">'.GetMessage('CLEAN_MASTER_SHOW_MORE').'</a>';
 						$description .= '</ul>';
 					}
 					if(count($value['notauth']) > 0  && is_array($value['inactive']))
 					{
-						$description .= '<b>'.GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_USER_NOTAUTH_TITLE').'</b>';
+						$description .= '<b>'.GetMessage('CLEAN_MASTER_DIAGNOSTIC_USER_NOTAUTH_TITLE').'</b>';
 						$description .= '<ul>';
 						$elCnt = 0;
 						foreach($value['notauth'] as $user)
 						{
 							if($elCnt++ == 5)
 								$description .= '<div style="display: none">';
-							$description .= '<li>'.GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_USER_ITEM', array('#ID#' => $user['ID'], '#LOGIN#' => $user['LOGIN'], '#EMAIL#' => $user['EMAIL'])).'</li>';
+							$description .= '<li>'.GetMessage('CLEAN_MASTER_DIAGNOSTIC_USER_ITEM', array('#ID#' => $user['ID'], '#LOGIN#' => $user['LOGIN'], '#EMAIL#' => $user['EMAIL'])).'</li>';
 						}
 						if($elCnt > 5)
-							$description .= '</div><a onclick="$(this).siblings(\'div\').toggle()" href="javascript:void(0);">'.GetMessage('ACRIT_CLEANMASTER_SHOW_MORE').'</a>';
+							$description .= '</div><a onclick="$(this).siblings(\'div\').toggle()" href="javascript:void(0);">'.GetMessage('CLEAN_MASTER_SHOW_MORE').'</a>';
 						$description .= '</ul>';
 					}
 					break;
 				case 'orderstat':
 					$size = 'N/A';
 					if(intval($value['order'] > 0))
-						$description = GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_DELRECORD', array('#DELRECORD#' => $value['order']));
+						$description = GetMessage('CLEAN_MASTER_DIAGNOSTIC_DELRECORD', array('#DELRECORD#' => $value['order']));
 					break;
 				case 'attackevent':
 				case 'webhist':
@@ -288,23 +292,23 @@ function diagnostic()
 				case 'perfmon':
 				case 'saleviewed':
 					if($value['record'] > 0)
-						$description = GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_DELRECORD', array('#DELRECORD#' => $value['record']));
+						$description = GetMessage('CLEAN_MASTER_DIAGNOSTIC_DELRECORD', array('#DELRECORD#' => $value['record']));
 					$size = $value['size'];
 					break;
 				case 'dropbasket':
 					$size = 'N/A';
 					if(intval($value['basket'] > 0))
-						$description = GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_BASKET', array('#BASKET#' => $value['basket']));
+						$description = GetMessage('CLEAN_MASTER_DIAGNOSTIC_BASKET', array('#BASKET#' => $value['basket']));
 					break;
 				case 'unconfirmed':
 					$size = 'N/A';
 					if(intval($value['record'] > 0))
-						$description = GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_DELRECORD', array('#DELRECORD#' => $value['record']));
+						$description = GetMessage('CLEAN_MASTER_DIAGNOSTIC_DELRECORD', array('#DELRECORD#' => $value['record']));
 					break;
 				case 'lang':
 					if(count($value['langs']) > 0  && is_array($value['langs']))
 					{
-						$description .= GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_LANG');
+						$description .= GetMessage('CLEAN_MASTER_DIAGNOSTIC_LANG');
 						$description .= '<ul>';
 						foreach($value['langs'] as $langid => $lang)
 						{
@@ -317,7 +321,7 @@ function diagnostic()
 				case 'module':
 					if(count($value['modules']) > 0  && is_array($value['modules']))
 					{
-						$description .= GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_MODULE');
+						$description .= GetMessage('CLEAN_MASTER_DIAGNOSTIC_MODULE');
 						$description .= '<ul>';
 						$elCnt = 0;
 						foreach($value['modules'] as $id => $module)
@@ -328,14 +332,14 @@ function diagnostic()
 							$description .= '<li>'.$id.' - '.round($module,1).' MB </li>';
 						}
 						if($elCnt > 5)
-							$description .= '</div><a onclick="$(this).siblings(\'div\').toggle()">'.GetMessage('ACRIT_CLEANMASTER_SHOW_MORE').'</a>';
+							$description .= '</div><a onclick="$(this).siblings(\'div\').toggle()">'.GetMessage('CLEAN_MASTER_SHOW_MORE').'</a>';
 						$description .= '</ul>';
 					}
 					break;
 				case 'component':
 					if(count($value['components']) && is_array($value['components']))
 					{
-						$description .= GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_COMPONENTS');
+						$description .= GetMessage('CLEAN_MASTER_DIAGNOSTIC_COMPONENTS');
 						$description .= '<ul>';
 						$elCnt = 0;
 						foreach($value['components'] as $id => $component)
@@ -346,7 +350,7 @@ function diagnostic()
 							$description .= '<li>'.$component['name'].'</li>';
 						}
 						if($elCnt > 5)
-							$description .= '</div><a onclick="$(this).siblings(\'div\').toggle()" href="javascript:void(0);">'.GetMessage('ACRIT_CLEANMASTER_SHOW_MORE').'</a>';
+							$description .= '</div><a onclick="$(this).siblings(\'div\').toggle()" href="javascript:void(0);">'.GetMessage('CLEAN_MASTER_SHOW_MORE').'</a>';
 						$description .= '</ul>';
 					}
 					$size = $value['size'];
@@ -360,35 +364,35 @@ function diagnostic()
 			}
 
 			if ($isDemo == 1)
-				$message .= GetMessage('ACRTT_CLEANMASTER_DIAGNOSTIC_TABLE_ROW', array(
+				$message .= GetMessage('ACRTT_MASTER_DIAGNOSTIC_TABLE_ROW', array(
 					'#NAME#' => GetMessage($key),
 					'#DESCRIPTION#' => $description,
 					'#SIZE#' => $size,
 					'#ID#' => $value['id']
 				));
 			else
-				$message .= GetMessage('ACRTT_CLEANMASTER_DIAGNOSTIC_TABLE_ROW_DEMO', array(
+				$message .= GetMessage('ACRTT_MASTER_DIAGNOSTIC_TABLE_ROW_DEMO', array(
 					'#NAME#' => GetMessage($key),
 					'#DESCRIPTION#' => $description,
 					'#SIZE#' => $size,
 					'#ID#' => $value['id']
 				));
 
-		} // \end foreach $_SESSION['cleanmaster']['diagnostic']
+		} // \end foreach $_SESSION['master']['diagnostic']
 
 
 		if($isDemo == 1)
-			$message .= GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_TABLE_FOOT', array("#SUM#" => $summ));
+			$message .= GetMessage('CLEAN_MASTER_DIAGNOSTIC_TABLE_FOOT', array("#SUM#" => $summ));
 		else
-			$message .= GetMessage('ACRIT_CLEANMASTER_DIAGNOSTIC_TABLE_FOOT_DEMO', array("#SUM#" => $summ));
+			$message .= GetMessage('CLEAN_MASTER_DIAGNOSTIC_TABLE_FOOT_DEMO', array("#SUM#" => $summ));
 
 		if ($isDemo == 1)
 			$message .= '</table></div>'
 						. '<input type="hidden" name="action_start" value="Y">'
-						. '<input class="adm-btn adm-btn-save" type="submit" name="select_action" value="' . GetMessage('CLEANMASTER_ACTION_CLEANSTART')
+						. '<input class="adm-btn adm-btn-save" type="submit" name="select_action" value="' . GetMessage('MASTER_ACTION_CLEANSTART')
 							. '" style="float: right; margin-top: 20px"/>';
 
-		//$message .= '<pre>'.print_r($_SESSION['cleanmaster']['diagnostic'], true).'</pre><br>';
+		//$message .= '<pre>'.print_r($_SESSION['master']['diagnostic'], true).'</pre><br>';
 	}
 
 	$APPLICATION->RestartBuffer();

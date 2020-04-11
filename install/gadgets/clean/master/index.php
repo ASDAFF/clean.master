@@ -1,4 +1,7 @@
 <?if( !defined( "B_PROLOG_INCLUDED" ) || B_PROLOG_INCLUDED !== true ) die();
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 if( !CModule::IncludeModule( "iblock" ) || !CModule::IncludeModule( "sale" ) ){
     return false;                
@@ -6,11 +9,11 @@ if( !CModule::IncludeModule( "iblock" ) || !CModule::IncludeModule( "sale" ) ){
 
 require_once $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/classes/general/update_client_partner.php";
 
-if( !class_exists( "CAcritCleanmasterInformerGadget" ) ){
-    class CAcritCleanmasterInformerGadget
+if( !class_exists( "CCleanMasterInformerGadget" ) ){
+    class CCleanMasterInformerGadget
 	{
-        public static $moduleId = "acrit.cleanmaster";
-        public static $modulePrefix = "acrit";
+        public static $moduleId = "clean.master";
+        public static $modulePrefix = "clean";
         public static $timeExpire = 2592000;
         
         private function GetMarketModuleList()
@@ -79,44 +82,44 @@ if( !class_exists( "CAcritCleanmasterInformerGadget" ) ){
     }
 }
 
-$arModuleNameParts = explode( ".", CAcritCleanmasterInformerGadget::$moduleId );
+$arModuleNameParts = explode( ".", CCleanMasterInformerGadget::$moduleId );
 
 global $APPLICATION;
 $APPLICATION->SetAdditionalCSS( "/bitrix/gadgets/".$arModuleNameParts[0]."/".$arModuleNameParts[1]."/styles.css" );
 
-$arModuleData = CAcritCleanmasterInformerGadget::GetMarketModulesInfo();
+$arModuleData = CCleanMasterInformerGadget::GetMarketModulesInfo();
 
 $showInfoRow = "";
 if( $arModuleData["IS_DEMO"] && ( strlen( $arModuleData["DATE_EXPIRE"] ) > 0 ) ){
-    $showInfoRow = GetMessage( "GD_ACRIT_CLEANMASTER_EXPORT_DEMO_PERIOD_INFO" ).$arModuleData["DATE_EXPIRE"];
-    $showBuyText = GetMessage( "GD_ACRIT_CLEANMASTER_EXPORT_BUY_LICENCE_INFO" );
+    $showInfoRow = GetMessage( "GD_CLEAN_MASTER_EXPORT_DEMO_PERIOD_INFO" ).$arModuleData["DATE_EXPIRE"];
+    $showBuyText = GetMessage( "GD_CLEAN_MASTER_EXPORT_BUY_LICENCE_INFO" );
 }
 elseif( $arModuleData["IS_DEMO"] && ( strlen( $arModuleData["DATE_EXPIRE"] ) <= 0 ) ){
-    $showInfoRow = GetMessage( "GD_ACRIT_CLEANMASTER_EXPORT_DEMO_PERIOD_EXPIRED_INFO" );
-    $showBuyText = GetMessage( "GD_ACRIT_CLEANMASTER_EXPORT_BUY_LICENCE_INFO" );
+    $showInfoRow = GetMessage( "GD_CLEAN_MASTER_EXPORT_DEMO_PERIOD_EXPIRED_INFO" );
+    $showBuyText = GetMessage( "GD_CLEAN_MASTER_EXPORT_BUY_LICENCE_INFO" );
 }
 elseif( !$arModuleData["IS_DEMO"] && ( strlen( $arModuleData["DATE_EXPIRE"] ) <= 0 ) ){
-    $showInfoRow = GetMessage( "GD_ACRIT_CLEANMASTER_EXPORT_LICENSE_PERIOD_EXPIRED_INFO" );
-    $showBuyText = GetMessage( "GD_ACRIT_CLEANMASTER_EXPORT_PROLONG_LICENCE_INFO" );
+    $showInfoRow = GetMessage( "GD_CLEAN_MASTER_EXPORT_LICENSE_PERIOD_EXPIRED_INFO" );
+    $showBuyText = GetMessage( "GD_CLEAN_MASTER_EXPORT_PROLONG_LICENCE_INFO" );
 }
 elseif( !$arModuleData["IS_DEMO"] && ( strlen( $arModuleData["DATE_EXPIRE"] ) > 0 ) ){
-    $showInfoRow = GetMessage( "GD_ACRIT_CLEANMASTER_EXPORT_LICENSE_PERIOD_INFO" ).$arModuleData["DATE_EXPIRE"];
+    $showInfoRow = GetMessage( "GD_CLEAN_MASTER_EXPORT_LICENSE_PERIOD_INFO" ).$arModuleData["DATE_EXPIRE"];
     $showBuyText = false;
 }
 
 if (trim($showInfoRow) == '') {
-	$showInfoRow = GetMessage('GD_ACRIT_CLEANMASTER_ELEVATOR_SPECH_INFO');
+	$showInfoRow = GetMessage('GD_CLEAN_MASTER_ELEVATOR_SPECH_INFO');
 }
 
 $byLicenceUrl = "https://www.acrit-studio.ru/market/avtomatizatsiya-rutiny/master-ochistki-sayta/?action=BUY&id=8538";
 $acritUrl = "https://www.acrit-studio.ru/";?>
 
-<div class="acrit-info-widget">
-    <div class="show-gadget-title"><?=GetMessage( "GD_ACRIT_CLEANMASTER_NAME" );?></div>
+<div class="clean-info-widget">
+    <div class="show-gadget-title"><?=GetMessage( "GD_CLEAN_MASTER_NAME" );?></div>
     <div class="show-info-row"><?=$showInfoRow;?></div>
     <?if( $showBuyText ){?>
-        <a class="acrit-info-widget-button acrit-info-widget-button-buy " href="<?=$byLicenceUrl;?>" target="_blank">
-            <div class="acrit-info-widget-button-text"><?=$showBuyText;?></div>
+        <a class="clean-info-widget-button clean-info-widget-button-buy " href="<?=$byLicenceUrl;?>" target="_blank">
+            <div class="clean-info-widget-button-text"><?=$showBuyText;?></div>
         </a>
     <?}?>
     <a href="<?=$acritUrl;?>" target="_blank"><div class="logo"></div></a>

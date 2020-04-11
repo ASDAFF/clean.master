@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanUser
 {
@@ -66,7 +68,7 @@ class CCleanUser
 	}
 
 	/**
-	 * Òî÷êà âõîäà, îáùèé ôàñàä î÷èñòêè
+	 * Ð¢Ð¾Ñ‡ÐºÐ° Ð²Ñ…Ð¾Ð´Ð°, Ð¾Ð±Ñ‰Ð¸Ð¹ Ñ„Ð°ÑÐ°Ð´ Ð¾Ñ‡Ð¸ÑÑ‚ÐºÐ¸
 	 * @param bool $not_authorized
 	 * @return bool
 	 */
@@ -111,7 +113,7 @@ class CCleanUser
 	}
 	
 	/*
-		Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+		ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	*/
 	public function GetDiagnosticData($step = false)
 	{
@@ -119,12 +121,12 @@ class CCleanUser
 		$arFilter = array("ACTIVE" => "N");
 		$users = CUser::GetList($by="ID", $order="asc", $arFilter);
 		while($arUsers = $users->Fetch()) {
-			$_SESSION['cleanmaster']['diagnostic']['user']['inactive'][$arUsers['LOGIN']] = array('NAME' => $arUsers['NAME'], 'LOGIN' => $arUsers['LOGIN'], 'ID' => $arUsers['ID'], 'EMAIL' => $arUsers['EMAIL']);
+			$_SESSION['master']['diagnostic']['user']['inactive'][$arUsers['LOGIN']] = array('NAME' => $arUsers['NAME'], 'LOGIN' => $arUsers['LOGIN'], 'ID' => $arUsers['ID'], 'EMAIL' => $arUsers['EMAIL']);
 		}
 		$users2 = CUser::GetList($by="ID", $order="asc", $not_auth);
 		while($arUsers = $users2->Fetch()) {
-			if(!key_exists($arUsers['LOGIN'], $_SESSION['cleanmaster']['diagnostic']['user']['inactive']))
-				$_SESSION['cleanmaster']['diagnostic']['user']['notauth'][$arUsers['LOGIN']] = array('NAME' => $arUsers['NAME'], 'LOGIN' => $arUsers['LOGIN'], 'ID' => $arUsers['ID'], 'EMAIL' => $arUsers['EMAIL']);
+			if(!key_exists($arUsers['LOGIN'], $_SESSION['master']['diagnostic']['user']['inactive']))
+				$_SESSION['master']['diagnostic']['user']['notauth'][$arUsers['LOGIN']] = array('NAME' => $arUsers['NAME'], 'LOGIN' => $arUsers['LOGIN'], 'ID' => $arUsers['ID'], 'EMAIL' => $arUsers['EMAIL']);
 		}
 		return false;
 	}

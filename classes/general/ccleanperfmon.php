@@ -1,4 +1,8 @@
 <?
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
 class CCleanPerfmon extends TCleanMasterFunctions {
     private $documentRoot;
     
@@ -20,14 +24,14 @@ class CCleanPerfmon extends TCleanMasterFunctions {
     }
     
     /*
-		Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+		ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	*/
 	public function GetDiagnosticData($step = false)
 	{
 		if(!Cmodule::IncludeModule('perfmon'))
 			return false;
 		global $DB;
-		$_SESSION['cleanmaster']['diagnostic']['perfmon']['size'] = 0;
+		$_SESSION['master']['diagnostic']['perfmon']['size'] = 0;
 		$arrTables = array(
 			"b_perf_error",
 			"b_perf_hit",
@@ -43,9 +47,9 @@ class CCleanPerfmon extends TCleanMasterFunctions {
         $arDBSize = $this->GetDBSize();
 		foreach ($arrTables as $table_name)
 		{
-			$_SESSION['cleanmaster']['diagnostic']['perfmon']['table'][$table_name] = $arDBSize[$table_name];
-			$_SESSION['cleanmaster']['diagnostic']['perfmon']['size'] += $arDBSize[$table_name]['total_size_mb'];
-			$_SESSION['cleanmaster']['diagnostic']['perfmon']['record'] += $arDBSize[$table_name]['table_rows'];
+			$_SESSION['master']['diagnostic']['perfmon']['table'][$table_name] = $arDBSize[$table_name];
+			$_SESSION['master']['diagnostic']['perfmon']['size'] += $arDBSize[$table_name]['total_size_mb'];
+			$_SESSION['master']['diagnostic']['perfmon']['record'] += $arDBSize[$table_name]['table_rows'];
 		}
 		return false;
 	}

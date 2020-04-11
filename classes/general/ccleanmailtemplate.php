@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanMailTemplate {
     public function InactiveMailTemplatesList() {
@@ -20,11 +22,11 @@ class CCleanMailTemplate {
 	}
 	
 	/*
-		Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+		ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	*/
 	public function GetDiagnosticData($step = false)
 	{
-		$_SESSION['cleanmaster']['diagnostic']['mailtemplate']['tempalte'] = $this->InactiveMailTemplatesList();
+		$_SESSION['master']['diagnostic']['mailtemplate']['tempalte'] = $this->InactiveMailTemplatesList();
 		return false;
 	}
 }

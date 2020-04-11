@@ -1,5 +1,9 @@
+/*
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
 /**
- * acrit.cleanmaster main scripts
+ * clean.master main scripts
  */
 jQuery(document).ready(function(){
 
@@ -9,7 +13,7 @@ jQuery(document).ready(function(){
             append('<input type="hidden" name="action" value="20">');
         $.ajax({
             method: 'POST',
-            url: '/bitrix/admin/acrit_cleanmaster_processor.php',
+            url: '/bitrix/admin/clean_master_processor.php',
             data: form.serialize(),
             success: function(data){
                 try{
@@ -26,7 +30,7 @@ jQuery(document).ready(function(){
         var currentAction = $('.action-container.active');
         $.ajax({
             method: 'post',
-            url: '/bitrix/admin/acrit_cleanmaster_processor.php',
+            url: '/bitrix/admin/clean_master_processor.php',
             data: {action: 5, upload_delete_tmp: 'y'},
             success: function(data){
                 try {
@@ -46,7 +50,7 @@ jQuery(document).ready(function(){
         form.append('<input type="hidden" name="action" value="1">');
         $.ajax({
             method: 'post',
-            url: '/bitrix/admin/acrit_cleanmaster_processor.php',
+            url: '/bitrix/admin/clean_master_processor.php',
             data: form.serialize(),
             success: function(data){
                 try {
@@ -68,7 +72,7 @@ jQuery(document).ready(function(){
         submit_button.addClass('disable');
         $.ajax({
             method: 'post',
-            url: '/bitrix/admin/acrit_cleanmaster_processor.php',
+            url: '/bitrix/admin/clean_master_processor.php',
             data: form.serialize(),
             success: function(data){
                 try {
@@ -141,14 +145,14 @@ jQuery(document).ready(function(){
         $(btn).fadeTo(0, 0.5);
         $.ajax({
             method: 'post',
-            url: '/bitrix/admin/acrit_cleanmaster_processor.php',
+            url: '/bitrix/admin/clean_master_processor.php',
             data: 'funcName=diagnostic&diagnosticStep=1',
             success: function(data){
                 try {
                     var obj = JSON.parse(data);
                     //console.log(obj);
                     if (obj.result == 'OK' && obj.action == 'process') {
-                        $('.cleanmaster-area').first().append(obj.DATA);
+                        $('.master-area').first().append(obj.DATA);
                     }
                 } catch(e) {
                     console.log(e);

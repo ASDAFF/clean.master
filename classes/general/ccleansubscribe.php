@@ -1,9 +1,11 @@
 <?php
-
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanSubscribe extends TCleanMasterFunctions {
     
-	function SubscribeHistoryClear($d1,$m1,$y1, $d2,$m2,$y2) { // Óäàëÿåì èñòîðèþ ðàññûëîê
+	function SubscribeHistoryClear($d1,$m1,$y1, $d2,$m2,$y2) { // Ð£Ð´Ð°Ð»ÑÐµÐ¼ Ð¸ÑÑ‚Ð¾Ñ€Ð¸ÑŽ Ñ€Ð°ÑÑÑ‹Ð»Ð¾Ðº
 		global $DB;
 		$from = strtotime($d1.'-'.$m1.'-'.$y1);
 		$to = strtotime($d2.'-'.$m2.'-'.$y2);
@@ -25,16 +27,16 @@ class CCleanSubscribe extends TCleanMasterFunctions {
 	}
 	
 	/*
-		Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+		ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	*/
 	public function GetDiagnosticDataUnconfirmed($step = false)
 	{
-		$_SESSION['cleanmaster']['diagnostic']['unconfirmed']['record'] = 0;
+		$_SESSION['master']['diagnostic']['unconfirmed']['record'] = 0;
 		if(!@Cmodule::IncludeModule('subscribe'))
 			return false;
 		$subscr = CSubscription::GetList(array("ID"=>"ASC"), array("CONFIRMED"=>"N"));
 		while(($subscr_arr = $subscr->Fetch())){
-			$_SESSION['cleanmaster']['diagnostic']['unconfirmed']['record']++;
+			$_SESSION['master']['diagnostic']['unconfirmed']['record']++;
 		}
 		return false;
 	}
@@ -43,11 +45,11 @@ class CCleanSubscribe extends TCleanMasterFunctions {
 		global $DB;
 		$arDBSize = $this->GetDBSize();
 		$arHist = $DB->Query("SELECT COUNT(ID) FROM `b_event` WHERE `DATE_EXEC`<'".date("Y-m-d", time() - 2592000)."'")->fetch();
-		$_SESSION['cleanmaster']['diagnostic']['stathistory']['record'] = $arHist['COUNT(ID)'];
+		$_SESSION['master']['diagnostic']['stathistory']['record'] = $arHist['COUNT(ID)'];
 		if($arDBSize['b_event']['table_rows'] <= 0)
-			$_SESSION['cleanmaster']['diagnostic']['stathistory']['size'] = 0;
+			$_SESSION['master']['diagnostic']['stathistory']['size'] = 0;
 		else
-			$_SESSION['cleanmaster']['diagnostic']['stathistory']['size'] = $arDBSize['b_event']['total_size_mb'] / $arDBSize['b_event']['table_rows'] * $arHist['COUNT(ID)'];
+			$_SESSION['master']['diagnostic']['stathistory']['size'] = $arDBSize['b_event']['total_size_mb'] / $arDBSize['b_event']['table_rows'] * $arHist['COUNT(ID)'];
 		return false;
 	}
 	public function GetDiagnosticDataRubric($step = false)
@@ -57,11 +59,11 @@ class CCleanSubscribe extends TCleanMasterFunctions {
 		global $DB;
 		$arDBSize = $this->GetDBSize();
 		$arHist = $DB->Query("SELECT COUNT(ID) FROM `b_list_rubric` WHERE `LAST_EXECUTED`<'".date("Y-m-d", time() - 2592000)."'")->fetch();
-		$_SESSION['cleanmaster']['diagnostic']['rubric']['record'] = $arHist['COUNT(ID)'];
+		$_SESSION['master']['diagnostic']['rubric']['record'] = $arHist['COUNT(ID)'];
 		if($arDBSize['b_list_rubric']['table_rows'] <= 0)
-			$_SESSION['cleanmaster']['diagnostic']['rubric']['size'] = 0;
+			$_SESSION['master']['diagnostic']['rubric']['size'] = 0;
 		else
-			$_SESSION['cleanmaster']['diagnostic']['rubric']['size'] = $arDBSize['b_list_rubric']['total_size_mb'] / $arDBSize['b_list_rubric']['table_rows'] * $arHist['COUNT(ID)'];
+			$_SESSION['master']['diagnostic']['rubric']['size'] = $arDBSize['b_list_rubric']['total_size_mb'] / $arDBSize['b_list_rubric']['table_rows'] * $arHist['COUNT(ID)'];
 		return false;
 	}
 }

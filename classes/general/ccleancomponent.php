@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanComponent extends TCleanMasterFunctions
 {
@@ -270,20 +272,20 @@ class CCleanComponent extends TCleanMasterFunctions
 	}
 	
 	/**
-	 * Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+	 * ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	 */
 	public function GetDiagnosticData($step = false)
 	{
 		//return false;
-		$_SESSION['cleanmaster']['diagnostic']['component']['size'] = 0;
+		$_SESSION['master']['diagnostic']['component']['size'] = 0;
 		if ($this->ProcessComponents($step) == false)
 		{
-			$_SESSION['cleanmaster']['diagnostic']['component']['components'] = $this->GetUnusedComponents();
-			foreach($_SESSION['cleanmaster']['diagnostic']['component']['components'] as $key => $comp)
+			$_SESSION['master']['diagnostic']['component']['components'] = $this->GetUnusedComponents();
+			foreach($_SESSION['master']['diagnostic']['component']['components'] as $key => $comp)
 			{
 				$arComp = explode(':', $comp['name']);
-				$_SESSION['cleanmaster']['diagnostic']['component']['components'][$key]['size'] = $this->GetDirSize($this->documentRoot."/{$comp['location']}/components/{$arComp[0]}/{$arComp[1]}/");
-				$_SESSION['cleanmaster']['diagnostic']['component']['size'] += $_SESSION['cleanmaster']['diagnostic']['component']['components'][$key]['size'];
+				$_SESSION['master']['diagnostic']['component']['components'][$key]['size'] = $this->GetDirSize($this->documentRoot."/{$comp['location']}/components/{$arComp[0]}/{$arComp[1]}/");
+				$_SESSION['master']['diagnostic']['component']['size'] += $_SESSION['master']['diagnostic']['component']['components'][$key]['size'];
 			}
 			return false;
 		}

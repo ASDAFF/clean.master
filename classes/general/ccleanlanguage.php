@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
 
 class CCleanLanguage extends TCleanMasterFunctions {
     //use TCleanMasterFunctions;
@@ -74,7 +76,7 @@ class CCleanLanguage extends TCleanMasterFunctions {
 	}
 	
 	/*
-		Получаем данные для диагностики
+		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	*/
 	public function GetDiagnosticData($step = false)
 	{
@@ -91,15 +93,15 @@ class CCleanLanguage extends TCleanMasterFunctions {
 		if(file_exists($this->documentRoot.'/local/'))
 			$this->DiagnosticFindDir($this->documentRoot.'/local/');
 		
-		foreach($_SESSION['cleanmaster']['diagnostic']['lang']['lang_dirs'] as $dir)
+		foreach($_SESSION['master']['diagnostic']['lang']['lang_dirs'] as $dir)
 		{
 			$arDir = explode('/', $dir);
-			if(!isset($_SESSION['cleanmaster']['diagnostic']['lang']['langs'][$arDir[count($arDir) - 1]]))
-				$_SESSION['cleanmaster']['diagnostic']['lang']['langs'][$arDir[count($arDir) - 1]] = 0;
-			$_SESSION['cleanmaster']['diagnostic']['lang']['langs'][$arDir[count($arDir) - 1]] += $_SESSION['cleanmaster']['diagnostic']['lang']['dirs'][$this->documentRoot.$dir];
+			if(!isset($_SESSION['master']['diagnostic']['lang']['langs'][$arDir[count($arDir) - 1]]))
+				$_SESSION['master']['diagnostic']['lang']['langs'][$arDir[count($arDir) - 1]] = 0;
+			$_SESSION['master']['diagnostic']['lang']['langs'][$arDir[count($arDir) - 1]] += $_SESSION['master']['diagnostic']['lang']['dirs'][$this->documentRoot.$dir];
 		}
-		unset($_SESSION['cleanmaster']['diagnostic']['lang']['lang_dirs']);
-		unset($_SESSION['cleanmaster']['diagnostic']['lang']['dirs']);
+		unset($_SESSION['master']['diagnostic']['lang']['lang_dirs']);
+		unset($_SESSION['master']['diagnostic']['lang']['dirs']);
 		
 		return false;
 	}
@@ -124,7 +126,7 @@ class CCleanLanguage extends TCleanMasterFunctions {
 		
 		foreach($dirToDelete as $dir)
 		{
-			$_SESSION['cleanmaster']['diagnostic']['lang']['lang_dirs'][] =$dir;
+			$_SESSION['master']['diagnostic']['lang']['lang_dirs'][] =$dir;
 		}
 	}
 	protected function DiagnosticGetDirSize($path)
@@ -140,7 +142,7 @@ class CCleanLanguage extends TCleanMasterFunctions {
 				if(is_dir($path.$file))
 				{
 					$dirSize = $this->DiagnosticGetDirSize($path.$file.'/');
-					$_SESSION['cleanmaster']['diagnostic']['lang']['dirs'][$path.$file] = $dirSize;
+					$_SESSION['master']['diagnostic']['lang']['dirs'][$path.$file] = $dirSize;
 					$size += $dirSize;
 				}
 				else

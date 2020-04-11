@@ -1,17 +1,21 @@
+/*
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
 @font-face{
     font-family: 'WebSymbolsLigaRegular';
     src: url('/bitrix/fonts/websymbolsligaregular.ttf');
 }
-#global_submenu_acrit .adm-submenu-items-title {
+#global_submenu_clean .adm-submenu-items-title {
     font-size: 18px;
 }
-.adm-main-menu-item.adm-acrit .adm-main-menu-item-icon {
-    background: url("images/acrit/acrit.png") no-repeat 17px 6px;
+.adm-main-menu-item.adm-clean .adm-main-menu-item-icon {
+    background: url("images/clean/clean.png") no-repeat 17px 6px;
     height: 45px;
     position: relative;
     z-index: 2;
 }
-.cleanmaster-area{
+.master-area{
     margin: 15px 0px;
 }
 .adm-btn.adm-btn-save.disable{

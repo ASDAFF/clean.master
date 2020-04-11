@@ -1,4 +1,8 @@
 <?
+/**
+ * Copyright (c) 11/4/2020 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
 class CCleanSaleViewed extends TCleanMasterFunctions {
     private $documentRoot;
     
@@ -7,7 +11,7 @@ class CCleanSaleViewed extends TCleanMasterFunctions {
         $this->documentRoot = Bitrix\Main\Application::getDocumentRoot();
     }
 
-    // TODO ñäåëàòü ïîøàãîâóþ î÷èñòêó
+    // TODO ÑÐ´ÐµÐ»Ð°Ñ‚ÑŒ Ð¿Ð¾ÑˆÐ°Ð³Ð¾Ð²ÑƒÑŽ Ð¾Ñ‡Ð¸ÑÑ‚ÐºÑƒ
     public function Clear()
     {
 		if(!Cmodule::IncludeModule('sale'))
@@ -23,7 +27,7 @@ class CCleanSaleViewed extends TCleanMasterFunctions {
     }
 
     /*
-		Ïîëó÷àåì äàííûå äëÿ äèàãíîñòèêè
+		ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ð´Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ¸
 	*/
 	public function GetDiagnosticData($step = false)
 	{
@@ -39,10 +43,10 @@ class CCleanSaleViewed extends TCleanMasterFunctions {
         $arCnt = $DB->Query($strSql, false, "File: ".__FILE__."<br>Line: ".__LINE__)->fetch();
         $arDBSize = $this->GetDBSize();
         if($arDBSize['b_sale_viewed_product']['table_rows'] <= 0)
-            $_SESSION['cleanmaster']['diagnostic']['saleviewed']['size'] = 0;
+            $_SESSION['master']['diagnostic']['saleviewed']['size'] = 0;
 		else
-            $_SESSION['cleanmaster']['diagnostic']['saleviewed']['size'] = $arDBSize['b_sale_viewed_product']['total_size_mb'] / $arDBSize['b_sale_viewed_product']['table_rows'] * $arCnt['COUNT(ID)'];
-		$_SESSION['cleanmaster']['diagnostic']['saleviewed']['record'] = $arCnt['COUNT(ID)'];
+            $_SESSION['master']['diagnostic']['saleviewed']['size'] = $arDBSize['b_sale_viewed_product']['total_size_mb'] / $arDBSize['b_sale_viewed_product']['table_rows'] * $arCnt['COUNT(ID)'];
+		$_SESSION['master']['diagnostic']['saleviewed']['record'] = $arCnt['COUNT(ID)'];
 		return false;
 	}
 }
