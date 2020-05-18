@@ -1,9 +1,0 @@
-.save-profile-process {color:#000 !important;}
-.dyn-url-mess {color:green;}
-.action_page_list_checks {}
-.action_page_list_checks .li {padding:5px 0px; border-bottom:1px dotted #d4dfe3;}
-.action_page_list_checks .li .l {width:45%; float:left;}
-.action_page_list_checks .li input {margin-left:5px;}
-.action_page_list_checks .li .r {width:50%; float:right; font-size:11px;}
-.action_page_list_checks .li:nth-child(even) {background-color:#dde9ed;}
-.action_page_list_checks .li:after {content:' '; display:block; clear:both;}

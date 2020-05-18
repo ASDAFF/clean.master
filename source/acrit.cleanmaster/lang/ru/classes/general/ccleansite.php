@@ -1,4 +1,0 @@
-<?
-$MESS["ACRIT_CLEANMASTER_INFOBLOK"] = "Инфоблок #IBLOCK_ID# : '#IBLOCK_NAME#' удален";
-$MESS["CLEANMASTER_ACTION_1_SITE_DELETED"] = "Сайт #SITE# удален";
-?>
